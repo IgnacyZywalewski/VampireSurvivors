@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdpyhfut4aucp"]
+
+[ext_resource type="Script" path="res://enemy/enemy.gd" id="1_1lqon"]
+[ext_resource type="Texture2D" uid="uid://d2xne6o0pp0tt" path="res://assets/textures/enemy/VampireBat.png" id="1_bxp1a"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u16b5"]
+radius = 4.0
+height = 8.0
+
+[node name="enemy_bat" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_1lqon")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_bxp1a")
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_u16b5")

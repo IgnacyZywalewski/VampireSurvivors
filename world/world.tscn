@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c62gaa0b2pj0"]
+
+[ext_resource type="Texture2D" uid="uid://dvthbnjwikiex" path="res://assets/textures/terrain/grass.png" id="1_cyl10"]
+[ext_resource type="PackedScene" uid="uid://bmxo6hqjvdv1n" path="res://player/player.tscn" id="2_5yv6o"]
+[ext_resource type="PackedScene" uid="uid://bdpyhfut4aucp" path="res://enemy/enemy.tscn" id="3_w38in"]
+
+[node name="World" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(192, 131)
+scale = Vector2(0.351044, 0.438102)
+texture = ExtResource("1_cyl10")
+region_enabled = true
+region_rect = Rect2(0, 0, 4000, 4000)
+
+[node name="Player" parent="." instance=ExtResource("2_5yv6o")]
+
+[node name="enemy_bat" parent="." instance=ExtResource("3_w38in")]
+position = Vector2(71, -41)
