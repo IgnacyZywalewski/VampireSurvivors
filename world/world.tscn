@@ -13,9 +13,9 @@ position = Vector2(192, 131)
 scale = Vector2(0.351044, 0.438102)
 texture = ExtResource("1_cyl10")
 region_enabled = true
-region_rect = Rect2(0, 0, 4000, 4000)
+region_rect = Rect2(0, 0, 40000, 40000)
 
 [node name="Player" parent="." instance=ExtResource("2_5yv6o")]
 
 [node name="enemy_bat" parent="." instance=ExtResource("3_w38in")]
-position = Vector2(71, -41)
+position = Vector2(-89, -56)
