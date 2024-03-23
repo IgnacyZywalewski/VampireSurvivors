@@ -1,8 +1,9 @@
 extends CharacterBody2D
 
 var movement_speed = 40.0
+var hp = 100
 @onready var sprite = $Sprite2D
-@onready var walkTimer = get_node("walkTimer")
+@onready var walk_timer = get_node("WalkTimer")
 
 func _physics_process(_delta):
 	movement()
@@ -18,12 +19,17 @@ func movement():
 		sprite.flip_h = false
 	
 	if mov != Vector2.ZERO:
-		if walkTimer.is_stopped():
+		if walk_timer.is_stopped():
 			if sprite.frame >= sprite.hframes -1:
 				sprite.frame = 0
 			else:
 				sprite.frame += 1
-			walkTimer.start()
+			walk_timer.start()
 	
 	velocity = mov.normalized() * movement_speed
 	move_and_slide()
+
+
+func _on_hurtbox_hurt(damage):
+	hp -= damage
+	print(hp)
