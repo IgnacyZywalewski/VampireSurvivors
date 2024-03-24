@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dlb0qoqsiv8ic" path="res://assets/textures/player/wizard.png" id="1_1fuup"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_vc33i"]
-[ext_resource type="PackedScene" uid="uid://cwmo7k842cuam" path="res://utility/hurtbox.tscn" id="3_gx2gy"]
+[ext_resource type="PackedScene" uid="uid://cwmo7k842cuam" path="res://utility/hurt_box.tscn" id="3_gx2gy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u04dn"]
 radius = 5.0

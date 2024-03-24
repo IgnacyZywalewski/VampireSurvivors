@@ -19,7 +19,6 @@ func _physics_process(_delta):
 	elif direction.x < -0.1:
 		sprite.flip_h = true
 
-
 func _on_hurtbox_hurt(damage):
 	hp -= damage
 	if hp <= 0:
