@@ -16,6 +16,7 @@ enemy_spawn_delay = 0
 
 [node name="World" type="Node2D"]
 
+<<<<<<< HEAD
 [node name="Background" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
@@ -27,6 +28,15 @@ texture = ExtResource("1_cyl10")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 1280, 720)
+=======
+[node name="Background" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 2
+scale = Vector2(0.351044, 0.438102)
+texture = ExtResource("1_cyl10")
+region_enabled = true
+region_rect = Rect2(0, 0, 40000, 40000)
+>>>>>>> 35d2f5267edd876f4a281ec0f269fe20b856d62f
 
 [node name="Player" parent="." instance=ExtResource("2_5yv6o")]
 position = Vector2(0, -1)
