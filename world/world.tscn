@@ -21,7 +21,7 @@ enemy_spawn_delay = 0
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
 motion_mirroring = Vector2(640, 360)
 
-[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxLayer"]
+[node name="Grass" type="Sprite2D" parent="Background/ParallaxLayer"]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_cyl10")
 centered = false
@@ -33,3 +33,4 @@ position = Vector2(0, -1)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_sxik3")]
 spawns = Array[ExtResource("5_sd5ls")]([SubResource("Resource_k16u3")])
+metadata/_edit_group_ = true
