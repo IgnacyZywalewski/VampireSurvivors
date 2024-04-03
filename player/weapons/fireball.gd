@@ -4,8 +4,6 @@ var level = 1
 var hp = 1
 var speed = 100
 var damage = 10
-#var knock_amount = 100
-var attack_size = 1.0
 
 var target = Vector2.ZERO
 var angle = Vector2.ZERO
@@ -23,8 +21,6 @@ func _ready():
 			hp = 1
 			speed = 100
 			damage = 10
-			# knock_amount = 100
-			attack_size = 1.0
 
 func _physics_process(delta):
 	position += angle * speed * delta
