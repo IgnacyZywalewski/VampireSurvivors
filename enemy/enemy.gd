@@ -4,8 +4,8 @@ extends CharacterBody2D
 @export var hp = 10
 
 @onready var player = get_tree().get_first_node_in_group("player")  
-@onready var sprite = $Sprite2D
-@onready var animation = $AnimationPlayer
+@onready var sprite = $BatSprite
+@onready var animation = $BatFlyAnimation
 
 signal remove_from_array(object)
 

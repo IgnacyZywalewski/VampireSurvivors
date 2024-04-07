@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var movement_speed = 40.0
 var hp = 100
-@onready var sprite = $Sprite2D
+@onready var sprite = $WizardSprite
 @onready var walk_timer = get_node("WalkTimer")
 
 #Weapons
@@ -18,13 +18,13 @@ var shooting_star = preload("res://player/weapons/shooting_star.tscn")
 #Fireball
 var fireball_ammo = 0
 var fireball_baseammo = 1
-var fireball_attakcspeed = 1.5
+#var fireball_attakcspeed = 1.5
 var fireball_level = 0
 
 #Shooting star
 var shooting_star_ammo = 0
 var shooting_star_baseammo = 1
-var shooting_star_attakcspeed = 1.5
+#var shooting_star_attakcspeed = 5
 var shooting_star_level = 1
 
 #Enemy
@@ -35,12 +35,12 @@ func _ready():
 
 func attack():
 	if fireball_level > 0:
-		fireball_timer.wait_time = fireball_attakcspeed
+		#fireball_timer.wait_time = fireball_attakcspeed
 		if fireball_timer.is_stopped():
 			fireball_timer.start()
 			
 	if shooting_star_level > 0:
-		shooting_star_timer.wait_time = shooting_star_attakcspeed
+		#shooting_star_timer.wait_time = shooting_star_attakcspeed
 		if shooting_star_timer.is_stopped():
 			shooting_star_timer.start()
 

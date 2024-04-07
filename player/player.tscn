@@ -18,7 +18,7 @@ radius = 367.049
 motion_mode = 1
 script = ExtResource("1_vc33i")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="WizardSprite" type="Sprite2D" parent="."]
 position = Vector2(-1, -1)
 scale = Vector2(1.15625, 1.125)
 texture = ExtResource("1_1fuup")
@@ -57,11 +57,11 @@ wait_time = 0.075
 
 [node name="ShootingStarTimer" type="Timer" parent="Attack"]
 unique_name_in_owner = true
-wait_time = 5.0
+wait_time = 2.0
 
 [node name="ShootingStarAttackTimer" type="Timer" parent="Attack/ShootingStarTimer"]
 unique_name_in_owner = true
-wait_time = 0.075
+wait_time = 0.001
 
 [node name="EnemyDetectionArea" type="Area2D" parent="."]
 collision_layer = 4

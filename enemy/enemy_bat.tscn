@@ -60,7 +60,7 @@ collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_obvar")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="BatSprite" type="Sprite2D" parent="."]
 position = Vector2(0, -0.70444)
 scale = Vector2(1.13281, 1.11328)
 texture = ExtResource("2_ahhqo")
@@ -71,8 +71,8 @@ visible = false
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_u16b5")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Sprite2D")
+[node name="BatFlyAnimation" type="AnimationPlayer" parent="."]
+root_node = NodePath("../BatSprite")
 libraries = {
 "": SubResource("AnimationLibrary_bno4q")
 }

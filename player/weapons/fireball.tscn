@@ -3,9 +3,6 @@
 [ext_resource type="Script" path="res://player/weapons/fireball.gd" id="1_4ni2h"]
 [ext_resource type="Texture2D" uid="uid://d2wobmx54we0l" path="res://assets/textures/weapons/fireball.png" id="2_rwr3u"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wurn5"]
-size = Vector2(17, 8)
-
 [sub_resource type="Animation" id="Animation_7eoip"]
 length = 0.001
 tracks/0/type = "value"
@@ -45,26 +42,29 @@ _data = {
 "fireball": SubResource("Animation_v8tex")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wurn5"]
+size = Vector2(17, 8)
+
 [node name="Fireball" type="Area2D" groups=["attack"]]
 top_level = true
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_4ni2h")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="FireballSprite" type="Sprite2D" parent="."]
 scale = Vector2(1.18056, 1.45238)
 texture = ExtResource("2_rwr3u")
 hframes = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-5.5, 3)
-shape = SubResource("RectangleShape2D_wurn5")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Sprite2D")
+[node name="FireballAnimation" type="AnimationPlayer" parent="."]
+root_node = NodePath("../FireballSprite")
 libraries = {
 "": SubResource("AnimationLibrary_nafe4")
 }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5.5, 3)
+shape = SubResource("RectangleShape2D_wurn5")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0

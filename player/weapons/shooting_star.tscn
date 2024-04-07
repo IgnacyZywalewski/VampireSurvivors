@@ -51,13 +51,13 @@ collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_42g65")
 
-[node name="ShootingStar" type="Sprite2D" parent="."]
+[node name="ShootingStarSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.740616, 0.771136)
 texture = ExtResource("1_g3u57")
 hframes = 4
 
 [node name="ShootingStarAnimation" type="AnimationPlayer" parent="."]
-root_node = NodePath("../ShootingStar")
+root_node = NodePath("../ShootingStarSprite")
 libraries = {
 "": SubResource("AnimationLibrary_81q85")
 }
