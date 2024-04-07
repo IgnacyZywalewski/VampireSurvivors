@@ -11,6 +11,7 @@ var angle = Vector2.ZERO
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var animation = $AnimationPlayer
 
+signal remove_from_array(object)
 
 func _ready():
 	animation.play("fireball")

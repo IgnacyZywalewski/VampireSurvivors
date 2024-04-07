@@ -11,7 +11,7 @@ script = ExtResource("5_sd5ls")
 time_start = 0
 time_end = 60
 enemy = ExtResource("4_j770d")
-enemy_num = 1
+enemy_num = 2
 enemy_spawn_delay = 0
 
 [node name="World" type="Node2D"]
@@ -29,7 +29,6 @@ region_enabled = true
 region_rect = Rect2(0, 0, 1280, 720)
 
 [node name="Player" parent="." instance=ExtResource("2_5yv6o")]
-position = Vector2(0, -1)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_sxik3")]
 spawns = Array[ExtResource("5_sd5ls")]([SubResource("Resource_k16u3")])
