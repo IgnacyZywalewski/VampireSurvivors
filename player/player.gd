@@ -75,7 +75,7 @@ func _on_fireball_attack_timer_timeout():
 	if fireball_ammo > 0:
 		var fireball_attack = fireball.instantiate()
 		fireball_attack.position = position
-		fireball_attack.target = get_nearest_target()
+		fireball_attack.target = get_random_target()
 		fireball_attack.level = fireball_level
 		add_child(fireball_attack)
 		fireball_ammo -= 1
@@ -113,13 +113,15 @@ func get_nearest_target():
 	var nearest_distance = INF
 	var nearest_enemy = null
 	
-	for enemy in enemy_close:
-		var distance = position.distance_to(enemy.global_position)
-		if distance < nearest_distance:
-			nearest_distance = distance
-			nearest_enemy = enemy.global_position
-	return nearest_enemy
-
+	if enemy_close.size() > 0:
+		for enemy in enemy_close:
+			var distance = position.distance_to(enemy.global_position)
+			if distance < nearest_distance:
+				nearest_distance = distance
+				nearest_enemy = enemy.global_position
+			return nearest_enemy
+	else:
+		return Vector2.UP
 
 func _on_enemy_detection_area_body_entered(body):
 	if not enemy_close.has(body):
