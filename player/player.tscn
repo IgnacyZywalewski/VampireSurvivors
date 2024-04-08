@@ -19,12 +19,13 @@ motion_mode = 1
 script = ExtResource("1_vc33i")
 
 [node name="WizardSprite" type="Sprite2D" parent="."]
-position = Vector2(-1, -1)
-scale = Vector2(1.15625, 1.125)
+position = Vector2(-0.250002, -1)
+scale = Vector2(1.20312, 1.125)
 texture = ExtResource("1_1fuup")
 hframes = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -46,6 +47,7 @@ position = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_225k4")
 
 [node name="Attack" type="Node2D" parent="."]
+visible = false
 
 [node name="FireballTimer" type="Timer" parent="Attack"]
 unique_name_in_owner = true
@@ -57,13 +59,14 @@ wait_time = 0.075
 
 [node name="ShootingStarTimer" type="Timer" parent="Attack"]
 unique_name_in_owner = true
-wait_time = 2.0
+wait_time = 5.0
 
 [node name="ShootingStarAttackTimer" type="Timer" parent="Attack/ShootingStarTimer"]
 unique_name_in_owner = true
-wait_time = 0.001
+wait_time = 0.3
 
 [node name="EnemyDetectionArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 4
 collision_mask = 4
 monitorable = false

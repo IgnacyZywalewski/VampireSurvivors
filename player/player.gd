@@ -18,13 +18,13 @@ var shooting_star = preload("res://player/weapons/shooting_star.tscn")
 #Fireball
 var fireball_ammo = 0
 var fireball_baseammo = 1
-#var fireball_attakcspeed = 1.5
-var fireball_level = 0
+#var fireball_attackspeed = 1.5
+var fireball_level = 1
 
 #Shooting star
 var shooting_star_ammo = 0
 var shooting_star_baseammo = 1
-#var shooting_star_attakcspeed = 5
+#var shooting_star_attackspeed = 5
 var shooting_star_level = 1
 
 #Enemy
@@ -56,7 +56,7 @@ func movement():
 		sprite.flip_h = true
 	elif mov.x < 0:
 		sprite.flip_h = false
-	
+		
 	if mov != Vector2.ZERO:
 		if walk_timer.is_stopped():
 			if sprite.frame >= sprite.hframes -1:
