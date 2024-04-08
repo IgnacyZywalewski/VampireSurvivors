@@ -18,14 +18,12 @@ var shooting_star = preload("res://player/weapons/shooting_star.tscn")
 #Fireball
 var fireball_ammo = 0
 var fireball_baseammo = 1
-#var fireball_attackspeed = 1.5
 var fireball_level = 1
 
 #Shooting star
 var shooting_star_ammo = 0
 var shooting_star_baseammo = 1
-#var shooting_star_attackspeed = 5
-var shooting_star_level = 1
+var shooting_star_level = 0
 
 #Enemy
 var enemy_close = []
@@ -34,15 +32,11 @@ func _ready():
 	attack()
 
 func attack():
-	if fireball_level > 0:
-		#fireball_timer.wait_time = fireball_attakcspeed
-		if fireball_timer.is_stopped():
-			fireball_timer.start()
+	if fireball_level > 0 and fireball_timer.is_stopped():
+		fireball_timer.start()
 			
-	if shooting_star_level > 0:
-		#shooting_star_timer.wait_time = shooting_star_attakcspeed
-		if shooting_star_timer.is_stopped():
-			shooting_star_timer.start()
+	if shooting_star_level > 0 and shooting_star_timer.is_stopped():
+		shooting_star_timer.start()
 
 func _physics_process(_delta):
 	movement()

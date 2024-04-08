@@ -1,7 +1,5 @@
 extends Area2D
 
-@export_enum("Cooldown", "HitOnce", "DisableHitBox") var hurt_box_type = 0
-
 @onready var collision = $CollisionShape2D
 @onready var disable_timer = $DisableTimer
 
@@ -12,11 +10,12 @@ var hit_once_array = []
 func _on_area_entered(area):
 	if area.is_in_group("attack"):
 		if not area.get("damage") == null:
-			match hurt_box_type:
-				0: #Colldown
+			match area.get("hurt_box_type"):
+				"cooldown": #Colldown
+					disable_timer.wait_time = area.get("cooldown_timer")
 					collision.call_deferred("set", "disabled", true)
 					disable_timer.start()
-				1: #HitOnce
+				"hit_once": #HitOnce
 					if hit_once_array.has(area) == false:
 						hit_once_array.append(area)
 						if area.has_signal("remove_from_array"):
@@ -24,7 +23,7 @@ func _on_area_entered(area):
 								area.connect("remove_from_array", Callable(self, "remove_from_list"))
 					else:
 						return 
-				2: #DisableHitBox
+				"disable_hit_box": #DisableHitBox
 					if area.has_method("tempdisable"):
 						area.tempdisable()
 			var damage = area.damage

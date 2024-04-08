@@ -4,6 +4,7 @@ var level = 1
 var bounce_num = 5
 var speed = 300
 var damage = 5
+var hurt_box_type = "hit_once"
 
 var target = Vector2.ZERO
 var angle = Vector2.ZERO

@@ -4,6 +4,7 @@ var level = 1
 var hp = 1
 var speed = 100
 var damage = 10
+var hurt_box_type = "hit_once"
 
 var target = Vector2.ZERO
 var angle = Vector2.ZERO
@@ -15,13 +16,15 @@ signal remove_from_array(object)
 
 func _ready():
 	animation.play("fireball")
+	if target == Vector2.ZERO:
+		angle = 0
 	angle = global_position.direction_to(target)
 	rotation = angle.angle()
 	match level:
 		1:
 			hp = 1
 			speed = 100
-			damage = 10
+			damage = 5
 
 func _physics_process(delta):
 	position += angle * speed * delta
