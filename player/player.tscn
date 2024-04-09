@@ -38,7 +38,6 @@ wait_time = 0.2
 one_shot = true
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_gx2gy")]
-visible = false
 collision_layer = 2
 collision_mask = 2
 
@@ -51,7 +50,7 @@ visible = false
 
 [node name="FireballTimer" type="Timer" parent="Attack"]
 unique_name_in_owner = true
-wait_time = 1.5
+wait_time = 2.0
 
 [node name="FireballAttackTimer" type="Timer" parent="Attack/FireballTimer"]
 unique_name_in_owner = true

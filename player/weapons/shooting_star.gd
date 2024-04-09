@@ -10,7 +10,6 @@ var target = Vector2.ZERO
 var angle = Vector2.ZERO
 
 @onready var player = get_tree().get_first_node_in_group("player")
-
 @onready var sprite = $ShootingStarSprite
 @onready var shooting_star_animation = $ShootingStarAnimation
 

@@ -8,6 +8,7 @@ var hp = 100
 #Weapons
 var fireball = preload("res://player/weapons/fireball.tscn")
 var shooting_star = preload("res://player/weapons/shooting_star.tscn")
+var garlic = preload("res://player/weapons/garlic.tscn")
 
 #Weapons nodes
 @onready var fireball_timer = get_node("%FireballTimer")
@@ -18,12 +19,16 @@ var shooting_star = preload("res://player/weapons/shooting_star.tscn")
 #Fireball
 var fireball_ammo = 0
 var fireball_baseammo = 1
-var fireball_level = 1
+var fireball_level = 0
 
 #Shooting star
 var shooting_star_ammo = 0
 var shooting_star_baseammo = 1
 var shooting_star_level = 0
+
+#Garlic
+var garlic_level = 0
+var garlic_attack = null
 
 #Enemy
 var enemy_close = []
@@ -37,6 +42,11 @@ func attack():
 			
 	if shooting_star_level > 0 and shooting_star_timer.is_stopped():
 		shooting_star_timer.start()
+		
+	if garlic_level > 0 and garlic_attack == null:
+		garlic_attack = garlic.instantiate()
+		garlic_attack.level = garlic_level
+		add_child(garlic_attack)
 
 func _physics_process(_delta):
 	movement()
@@ -75,7 +85,7 @@ func _on_fireball_attack_timer_timeout():
 	if fireball_ammo > 0:
 		var fireball_attack = fireball.instantiate()
 		fireball_attack.position = position
-		fireball_attack.target = get_random_target()
+		fireball_attack.target = get_nearest_target()
 		fireball_attack.level = fireball_level
 		add_child(fireball_attack)
 		fireball_ammo -= 1

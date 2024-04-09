@@ -4,6 +4,9 @@ extends Area2D
 @onready var collision = $CollisionShape2D
 @onready var disable_timer = $DisableHitBoxTimer
 
+var hurt_box_type = "cooldown"
+var cooldown_timer = 1
+
 func tempdisable():
 	collision.call_deferred("set", "disabled", true)
 	disable_timer.start()

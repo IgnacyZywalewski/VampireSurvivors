@@ -11,8 +11,8 @@ func _on_area_entered(area):
 	if area.is_in_group("attack"):
 		if not area.get("damage") == null:
 			match area.get("hurt_box_type"):
-				"cooldown": #Colldown
-					disable_timer.wait_time = area.get("cooldown_timer")
+				"cooldown": #Cooldown
+					disable_timer.set_wait_time(area.get("cooldown_timer"))
 					collision.call_deferred("set", "disabled", true)
 					disable_timer.start()
 				"hit_once": #HitOnce

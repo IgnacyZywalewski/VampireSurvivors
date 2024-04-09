@@ -4,7 +4,8 @@ var level = 1
 var hp = 1
 var speed = 100
 var damage = 10
-var hurt_box_type = "hit_once"
+var hurt_box_type = "cooldown"
+var cooldown_timer = 1
 
 var target = Vector2.ZERO
 var angle = Vector2.ZERO

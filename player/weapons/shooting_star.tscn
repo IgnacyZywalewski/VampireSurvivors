@@ -5,6 +5,7 @@
 
 [sub_resource type="Animation" id="Animation_ly01y"]
 length = 0.001
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -20,7 +21,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_naa8s"]
 resource_name = "shooting_star"
-length = 0.22
+length = 0.2
 loop_mode = 1
 step = 0.05
 tracks/0/type = "value"
@@ -61,7 +62,6 @@ root_node = NodePath("../ShootingStarSprite")
 libraries = {
 "": SubResource("AnimationLibrary_81q85")
 }
-speed_scale = 0.921
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
