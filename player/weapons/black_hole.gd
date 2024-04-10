@@ -19,6 +19,5 @@ func _ready():
 			sprite.scale = Vector2(2,2)
 			collision_shape.scale = Vector2(2,2)
 
-
 func _physics_process(delta):
 	position = player.global_position * delta

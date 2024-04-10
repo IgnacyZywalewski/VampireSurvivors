@@ -20,7 +20,7 @@ func _ready():
 	match level:
 		1:
 			bounce_num = 5
-			speed = 150
+			speed = 300
 			damage = 5
 
 func _physics_process(delta):

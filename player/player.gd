@@ -9,12 +9,16 @@ var hp = 100
 var fireball = preload("res://player/weapons/fireball.tscn")
 var shooting_star = preload("res://player/weapons/shooting_star.tscn")
 var black_hole = preload("res://player/weapons/black_hole.tscn")
+var lightning_bolt = preload("res://player/weapons/lightning_bolt.tscn")
+
 
 #Weapons nodes
 @onready var fireball_timer = get_node("%FireballTimer")
 @onready var fireball_attack_timer = get_node("%FireballAttackTimer")
 @onready var shooting_star_timer = get_node("%ShootingStarTimer")
 @onready var shooting_star_attack_timer = get_node("%ShootingStarAttackTimer")
+@onready var lightning_bolt_timer = get_node("%LightningBoltTimer")
+@onready var lightning_bolt_attack_timer = get_node("%LightningBoltAttackTimer")
 
 #Fireball
 var fireball_ammo = 0
@@ -26,9 +30,14 @@ var shooting_star_ammo = 0
 var shooting_star_baseammo = 1
 var shooting_star_level = 0
 
-#Garlic
-var black_hole_level = 1
+#BlackHole
+var black_hole_level = 0
 var black_hole_attack = null
+
+#LightningBolt
+var lightning_bolt_ammo = 0
+var lightning_bolt_baseammo = 1
+var lightning_bolt_level = 1
 
 #Enemy
 var enemy_close = []
@@ -47,6 +56,9 @@ func attack():
 		black_hole_attack = black_hole.instantiate()
 		black_hole_attack.level = black_hole_level
 		add_child(black_hole_attack)
+		
+	if lightning_bolt_level > 0 and lightning_bolt_timer.is_stopped():
+		lightning_bolt_timer.start()
 
 func _physics_process(_delta):
 	movement()
@@ -113,9 +125,27 @@ func _on_shooting_star_attack_timer_timeout():
 			shooting_star_attack_timer.stop()
 
 
+func _on_lightning_bolt_timer_timeout():
+	lightning_bolt_ammo += lightning_bolt_baseammo
+	lightning_bolt_attack_timer.start()
+
+func _on_lightning_bolt_attack_timer_timeout():
+	if lightning_bolt_ammo > 0:
+		var lightning_bolt_attack = lightning_bolt.instantiate()
+		lightning_bolt_attack.target = get_random_target()
+		lightning_bolt_attack.position = lightning_bolt_attack.target
+		lightning_bolt_attack.level = lightning_bolt_level
+		add_child(lightning_bolt_attack)
+		lightning_bolt_ammo -= 1
+		if lightning_bolt_ammo > 0:
+			lightning_bolt_attack_timer.start()
+		else:
+			lightning_bolt_attack_timer.stop()
+
+
 func get_random_target():
 	if enemy_close.size() > 0:
-		return enemy_close.pick_random().global_position
+		return enemy_close.pick_random().position
 	else:
 		return Vector2.UP 
 
