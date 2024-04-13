@@ -3,6 +3,21 @@
 [ext_resource type="Script" path="res://player/weapons/black_hole.gd" id="1_8k70i"]
 [ext_resource type="Texture2D" uid="uid://7fx01myga5oh" path="res://assets/textures/weapons/black_hole.png" id="2_pdpgd"]
 
+[sub_resource type="Animation" id="Animation_14f77"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlackHoleSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_fupal"]
 resource_name = "black_hole"
 length = 0.75
@@ -20,21 +35,6 @@ tracks/0/keys = {
 "values": [7, 6, 5, 4, 3, 2, 1, 0]
 }
 
-[sub_resource type="Animation" id="Animation_14f77"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BlackHoleSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qrgxj"]
 _data = {
 "RESET": SubResource("Animation_14f77"),
@@ -42,7 +42,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_slhy2"]
-radius = 23.0
+radius = 18.0
 
 [node name="BlackHole" type="Area2D" groups=["attack"]]
 collision_layer = 4
@@ -60,5 +60,4 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CircleShape2D_slhy2")

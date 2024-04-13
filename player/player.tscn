@@ -67,7 +67,7 @@ wait_time = 0.3
 
 [node name="LightningBoltTimer" type="Timer" parent="Attack"]
 unique_name_in_owner = true
-wait_time = 5.0
+wait_time = 3.0
 
 [node name="LightningBoltAttackTimer" type="Timer" parent="Attack/LightningBoltTimer"]
 unique_name_in_owner = true

@@ -61,7 +61,6 @@ motion_mode = 1
 script = ExtResource("1_obvar")
 
 [node name="BatSprite" type="Sprite2D" parent="."]
-position = Vector2(0, -0.70444)
 scale = Vector2(1.13281, 1.11328)
 texture = ExtResource("2_ahhqo")
 hframes = 4
@@ -78,6 +77,7 @@ libraries = {
 }
 
 [node name="Hitbox" parent="." instance=ExtResource("3_66cbj")]
+visible = false
 position = Vector2(0, 1)
 collision_layer = 2
 collision_mask = 2
@@ -86,7 +86,6 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_20fr8")
 
 [node name="Hurtbox" parent="." instance=ExtResource("4_mtmkx")]
-visible = false
 collision_layer = 4
 collision_mask = 4
 

@@ -50,8 +50,8 @@ collision_mask = 0
 script = ExtResource("1_bgu55")
 
 [node name="LightningBoltSprite" type="Sprite2D" parent="."]
-position = Vector2(0, -72)
-scale = Vector2(1, 2.313)
+position = Vector2(0, -79.25)
+scale = Vector2(0.75, 2.54861)
 texture = ExtResource("1_whyu8")
 hframes = 10
 

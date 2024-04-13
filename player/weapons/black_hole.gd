@@ -8,16 +8,21 @@ extends Area2D
 var level = 1
 var damage = 1
 var hurt_box_type = "cooldown"
-var cooldown_timer = 1
+var cooldown_timer = 2
+var knockback_amount = 100
+
+var angle = Vector2.ZERO
 
 func _ready():
 	animation.play("black_hole")
 	match level:
 		1:
 			damage = 2
-			cooldown_timer = 1
+			cooldown_timer = 2
 			sprite.scale = Vector2(2,2)
 			collision_shape.scale = Vector2(2,2)
+			knockback_amount = 100
 
 func _physics_process(delta):
 	position = player.global_position * delta
+

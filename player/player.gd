@@ -31,13 +31,13 @@ var shooting_star_baseammo = 1
 var shooting_star_level = 0
 
 #BlackHole
-var black_hole_level = 0
+var black_hole_level = 1
 var black_hole_attack = null
 
 #LightningBolt
 var lightning_bolt_ammo = 0
 var lightning_bolt_baseammo = 1
-var lightning_bolt_level = 1
+var lightning_bolt_level = 0
 
 #Enemy
 var enemy_close = []
@@ -84,7 +84,7 @@ func movement():
 	velocity = mov.normalized() * movement_speed
 	move_and_slide()
 
-func _on_hurtbox_hurt(damage):
+func _on_hurtbox_hurt(damage, _angle, _knockback):
 	hp -= damage
 	print(hp)
 
