@@ -1,9 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://bdpyhfut4aucp"]
+[gd_scene load_steps=16 format=3 uid="uid://bdpyhfut4aucp"]
 
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_obvar"]
 [ext_resource type="Texture2D" uid="uid://d2xne6o0pp0tt" path="res://assets/textures/enemy/VampireBat.png" id="2_ahhqo"]
+[ext_resource type="Shader" uid="uid://d3lq2lub4t11s" path="res://enemy/hit_flash.tres" id="2_wly23"]
 [ext_resource type="PackedScene" uid="uid://26fnsvubgu2t" path="res://utility/hit_box.tscn" id="3_66cbj"]
 [ext_resource type="PackedScene" uid="uid://cwmo7k842cuam" path="res://utility/hurt_box.tscn" id="4_mtmkx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yfpd5"]
+resource_local_to_scene = true
+shader = ExtResource("2_wly23")
+shader_parameter/enabled = false
+shader_parameter/color = Color(1, 1, 1, 1)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u16b5"]
 radius = 4.0
@@ -48,6 +55,43 @@ _data = {
 "fly": SubResource("Animation_g7s85")
 }
 
+[sub_resource type="Animation" id="Animation_r7jcp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_lm6rj"]
+resource_name = "hit_flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hxnox"]
+_data = {
+"RESET": SubResource("Animation_r7jcp"),
+"hit_flash": SubResource("Animation_lm6rj")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_20fr8"]
 size = Vector2(10, 10)
 
@@ -61,6 +105,7 @@ motion_mode = 1
 script = ExtResource("1_obvar")
 
 [node name="BatSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_yfpd5")
 scale = Vector2(1.13281, 1.11328)
 texture = ExtResource("2_ahhqo")
 hframes = 4
@@ -76,6 +121,12 @@ libraries = {
 "": SubResource("AnimationLibrary_bno4q")
 }
 
+[node name="HitFlashAnimation" type="AnimationPlayer" parent="."]
+root_node = NodePath("../BatSprite")
+libraries = {
+"": SubResource("AnimationLibrary_hxnox")
+}
+
 [node name="Hitbox" parent="." instance=ExtResource("3_66cbj")]
 visible = false
 position = Vector2(0, 1)
@@ -86,6 +137,7 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_20fr8")
 
 [node name="Hurtbox" parent="." instance=ExtResource("4_mtmkx")]
+visible = false
 collision_layer = 4
 collision_mask = 4
 

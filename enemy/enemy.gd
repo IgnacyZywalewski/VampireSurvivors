@@ -8,6 +8,7 @@ var knockback = Vector2.ZERO
 @onready var player = get_tree().get_first_node_in_group("player")  
 @onready var sprite = $BatSprite
 @onready var animation = $BatFlyAnimation
+@onready var hit_flash_animation = $HitFlashAnimation
 
 signal remove_from_array(object)
 
@@ -28,6 +29,8 @@ func _physics_process(_delta):
 
 func _on_hurtbox_hurt(damage, angle, knockback_amount):
 	hp -= damage
+	hit_flash_animation.play("hit_flash")
+	
 	if angle == Vector2.ZERO:
 		if position.x < player.position.x and position.y < player.position.y:
 			angle = Vector2(-1,-1)
@@ -37,7 +40,6 @@ func _on_hurtbox_hurt(damage, angle, knockback_amount):
 			angle = Vector2(1,-1)
 		if position.x > player.position.x and position.y > player.position.y:
 			angle = Vector2(1,1)
-	
 	knockback = angle * knockback_amount
 	
 	if hp <= 0:
