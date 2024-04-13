@@ -26,3 +26,4 @@ func _ready():
 func _physics_process(delta):
 	position = player.global_position * delta
 
+

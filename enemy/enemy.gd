@@ -26,20 +26,13 @@ func _physics_process(_delta):
 		sprite.flip_h = false
 	elif direction.x < -0.1:
 		sprite.flip_h = true
+	
 
 func _on_hurtbox_hurt(damage, angle, knockback_amount):
 	hp -= damage
 	hit_flash_animation.play("hit_flash")
 	
-	if angle == Vector2.ZERO:
-		if position.x < player.position.x and position.y < player.position.y:
-			angle = Vector2(-1,-1)
-		if position.x < player.position.x and position.y > player.position.y:
-			angle = Vector2(-1,1)
-		if position.x > player.position.x and position.y < player.position.y:
-			angle = Vector2(1,-1)
-		if position.x > player.position.x and position.y > player.position.y:
-			angle = Vector2(1,1)
+	angle = -global_position.direction_to(player.global_position)
 	knockback = angle * knockback_amount
 	
 	if hp <= 0:

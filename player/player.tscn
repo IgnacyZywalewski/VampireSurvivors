@@ -1,15 +1,84 @@
-[gd_scene load_steps=7 format=3 uid="uid://bmxo6hqjvdv1n"]
+[gd_scene load_steps=12 format=3 uid="uid://bmxo6hqjvdv1n"]
 
-[ext_resource type="Texture2D" uid="uid://dlb0qoqsiv8ic" path="res://assets/textures/player/wizard.png" id="1_1fuup"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_vc33i"]
+[ext_resource type="Texture2D" uid="uid://db3bl0qcr6u21" path="res://assets/textures/player/Owlet_Monster_Idle.png" id="2_oleco"]
+[ext_resource type="Texture2D" uid="uid://cvkexxxiw7dq8" path="res://assets/textures/player/Owlet_Monster_Walk.png" id="3_8do3s"]
 [ext_resource type="PackedScene" uid="uid://cwmo7k842cuam" path="res://utility/hurt_box.tscn" id="3_gx2gy"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u04dn"]
-radius = 5.0
+[sub_resource type="Animation" id="Animation_xqf7j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../WalkSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_5d4ps"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_phqel"]
+resource_name = "walk"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../WalkSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p25oc"]
+_data = {
+"RESET": SubResource("Animation_xqf7j"),
+"idle": SubResource("Animation_5d4ps"),
+"walk": SubResource("Animation_phqel")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lh160"]
+radius = 7.0
 height = 26.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_225k4"]
-size = Vector2(10, 28)
+size = Vector2(12, 26)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1swup"]
 radius = 367.049
@@ -18,32 +87,44 @@ radius = 367.049
 motion_mode = 1
 script = ExtResource("1_vc33i")
 
-[node name="WizardSprite" type="Sprite2D" parent="."]
-position = Vector2(-0.250002, -1)
-scale = Vector2(1.20312, 1.125)
-texture = ExtResource("1_1fuup")
-hframes = 2
+[node name="Animation" type="AnimationPlayer" parent="."]
+root_node = NodePath("IdleSprite")
+libraries = {
+"": SubResource("AnimationLibrary_p25oc")
+}
+speed_scale = 0.8
+
+[node name="IdleSprite" type="Sprite2D" parent="Animation"]
+visible = false
+z_index = -1
+position = Vector2(0, -20)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("2_oleco")
+hframes = 4
+
+[node name="WalkSprite" type="Sprite2D" parent="Animation"]
+visible = false
+z_index = -1
+position = Vector2(0, -20)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("3_8do3s")
+hframes = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -18)
+shape = SubResource("CapsuleShape2D_lh160")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(1, 1)
-shape = SubResource("CapsuleShape2D_u04dn")
-
-[node name="WalkTimer" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 0.2
-one_shot = true
-
 [node name="Hurtbox" parent="." instance=ExtResource("3_gx2gy")]
 visible = false
+position = Vector2(-1, -19)
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
-position = Vector2(1, 1)
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_225k4")
 
 [node name="Attack" type="Node2D" parent="."]

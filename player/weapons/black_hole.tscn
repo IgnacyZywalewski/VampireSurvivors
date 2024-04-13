@@ -45,6 +45,7 @@ _data = {
 radius = 18.0
 
 [node name="BlackHole" type="Area2D" groups=["attack"]]
+z_index = -1
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_8k70i")
@@ -60,4 +61,5 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_slhy2")

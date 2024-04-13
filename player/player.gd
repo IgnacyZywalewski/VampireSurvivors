@@ -2,8 +2,12 @@ extends CharacterBody2D
 
 var movement_speed = 40.0
 var hp = 100
-@onready var sprite = $WizardSprite
-@onready var walk_timer = get_node("WalkTimer")
+
+
+@onready var animation = $Animation
+@onready var idle_sprite = $Animation/IdleSprite
+@onready var walk_sprite = $Animation/WalkSprite
+@onready var collision_shape = $CollisionShape2D
 
 #Weapons
 var fireball = preload("res://player/weapons/fireball.tscn")
@@ -60,7 +64,7 @@ func attack():
 	if lightning_bolt_level > 0 and lightning_bolt_timer.is_stopped():
 		lightning_bolt_timer.start()
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	movement()
 
 func movement():
@@ -68,19 +72,26 @@ func movement():
 	var y_mov = Input.get_action_strength("down") - Input.get_action_strength("up")
 	var mov = Vector2(x_mov, y_mov)
 	
-	if mov.x > 0:
-		sprite.flip_h = true
-	elif mov.x < 0:
-		sprite.flip_h = false
+	if mov.x < 0:
+		walk_sprite.flip_h = true
+		idle_sprite.flip_h = true
+		
+	elif mov.x > 0:
+		walk_sprite.flip_h = false
+		idle_sprite.flip_h = false
 		
 	if mov != Vector2.ZERO:
-		if walk_timer.is_stopped():
-			if sprite.frame >= sprite.hframes -1:
-				sprite.frame = 0
-			else:
-				sprite.frame += 1
-			walk_timer.start()
-	
+		idle_sprite.visible = false
+		walk_sprite.visible = true
+		animation.play("walk")
+	else:
+		idle_sprite.visible = true
+		walk_sprite.visible = false
+		animation.play("idle")
+		
+	walk_sprite.global_position = global_position
+	idle_sprite.global_position = global_position
+	collision_shape.global_position = global_position
 	velocity = mov.normalized() * movement_speed
 	move_and_slide()
 

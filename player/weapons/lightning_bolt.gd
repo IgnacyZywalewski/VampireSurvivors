@@ -17,12 +17,12 @@ func _ready():
 		1:
 			damage = 10
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if (sprite.frame == 0  or sprite.frame == 7) and collision_shape.disabled == false:
 		collision_shape.disabled = true
 	elif sprite.frame == 3 and collision_shape.disabled == true:
 		collision_shape.disabled = false
 
 
-func _on_lightning_bolt_animation_animation_finished(animation):
+func _on_lightning_bolt_animation_animation_finished(_animation):
 	queue_free()
