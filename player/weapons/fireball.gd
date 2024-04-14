@@ -18,7 +18,6 @@ signal remove_from_array(object)
 func _ready():
 	animation.play("fireball")
 	angle = global_position.direction_to(target)
-	print(angle)
 	rotation = angle.angle()
 	match level:
 		1:

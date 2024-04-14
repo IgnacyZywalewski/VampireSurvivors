@@ -3,6 +3,9 @@ extends CharacterBody2D
 var movement_speed = 40.0
 var hp = 100
 
+var experience = 0
+var experience_level = 1
+var collected_experience = 0
 
 @onready var animation = $Animation
 @onready var idle_sprite = $Animation/IdleSprite
@@ -14,7 +17,6 @@ var fireball = preload("res://player/weapons/fireball.tscn")
 var shooting_star = preload("res://player/weapons/shooting_star.tscn")
 var black_hole = preload("res://player/weapons/black_hole.tscn")
 var lightning_bolt = preload("res://player/weapons/lightning_bolt.tscn")
-
 
 #Weapons nodes
 @onready var fireball_timer = get_node("%FireballTimer")
@@ -36,7 +38,6 @@ var shooting_star_level = 0
 
 #BlackHole
 var black_hole_level = 1
-var black_hole_attack = null
 
 #LightningBolt
 var lightning_bolt_ammo = 0
@@ -56,18 +57,19 @@ func attack():
 	if shooting_star_level > 0 and shooting_star_timer.is_stopped():
 		shooting_star_timer.start()
 		
-	if black_hole_level > 0 and black_hole_attack == null:
-		black_hole_attack = black_hole.instantiate()
+	if black_hole_level > 0:
+		var black_hole_attack = black_hole.instantiate()
 		black_hole_attack.level = black_hole_level
+		black_hole_attack.position = position
 		add_child(black_hole_attack)
 		
 	if lightning_bolt_level > 0 and lightning_bolt_timer.is_stopped():
 		lightning_bolt_timer.start()
 
 func _physics_process(delta):
-	movement()
+	movement(delta)
 
-func movement():
+func movement(delta):
 	var x_mov = Input.get_action_strength("right") - Input.get_action_strength("left")
 	var y_mov = Input.get_action_strength("down") - Input.get_action_strength("up")
 	var mov = Vector2(x_mov, y_mov)
@@ -181,3 +183,36 @@ func _on_enemy_detection_area_body_entered(body):
 func _on_enemy_detection_area_body_exited(body):
 	if enemy_close.has(body):
 		enemy_close.erase(body)
+
+
+func _on_grab_area_area_entered(area):
+	if area.is_in_group("loot"):
+		area.target = self
+
+func _on_collect_area_area_entered(area):
+	if area.is_in_group("loot"):
+		var gem_exp = area.collect() 
+		callculate_experience(gem_exp)
+
+func callculate_experience(gem_exp):
+	var exp_required = callculate_experience_cap()
+	collected_experience += gem_exp
+	if experience + collected_experience >= exp_required:
+		collected_experience -= exp_required - experience
+		experience_level += 1
+		experience = 0
+		exp_required = callculate_experience_cap()
+		callculate_experience(0)
+	else:
+		experience += collected_experience
+		collected_experience = 0
+	
+func callculate_experience_cap():
+	var exp_cap = experience_level
+	if experience_level < 20:
+		exp_cap = experience_level * 5
+	elif experience_level < 40:
+		exp_cap = 95 + (experience_level - 19) * 8
+	else:
+		exp_cap = 255 + (experience_level-39) * 12
+	return exp_cap

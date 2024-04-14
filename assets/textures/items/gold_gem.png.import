@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ltsnpe01kv8x"
-path="res://.godot/imported/gem_blue.png-2266630fa589cf9d050c4a0cfcdc46c5.ctex"
+uid="uid://dnfe758w80x0v"
+path="res://.godot/imported/gold_gem.png-a0be31e8add79a7e85b2bd4c0cc89d0c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/gem_blue.png"
-dest_files=["res://.godot/imported/gem_blue.png-2266630fa589cf9d050c4a0cfcdc46c5.ctex"]
+source_file="res://assets/textures/items/gold_gem.png"
+dest_files=["res://.godot/imported/gold_gem.png-a0be31e8add79a7e85b2bd4c0cc89d0c.ctex"]
 
 [params]
 
