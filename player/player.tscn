@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://bmxo6hqjvdv1n"]
+[gd_scene load_steps=20 format=3 uid="uid://bmxo6hqjvdv1n"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_vc33i"]
 [ext_resource type="Texture2D" uid="uid://db3bl0qcr6u21" path="res://assets/textures/player/Owlet_Monster_Idle.png" id="2_oleco"]
 [ext_resource type="Texture2D" uid="uid://cvkexxxiw7dq8" path="res://assets/textures/player/Owlet_Monster_Walk.png" id="3_8do3s"]
 [ext_resource type="PackedScene" uid="uid://cwmo7k842cuam" path="res://utility/hurt_box.tscn" id="3_gx2gy"]
+[ext_resource type="Shader" uid="uid://d3lq2lub4t11s" path="res://enemy/hit_flash.tres" id="3_jvlhe"]
 
 [sub_resource type="Animation" id="Animation_xqf7j"]
 length = 0.001
@@ -73,6 +74,77 @@ _data = {
 "walk": SubResource("Animation_phqel")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_10no0"]
+shader = ExtResource("3_jvlhe")
+shader_parameter/enabled = false
+shader_parameter/color = Color(0.72549, 0, 0, 0.588235)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kqe61"]
+shader = ExtResource("3_jvlhe")
+shader_parameter/enabled = false
+shader_parameter/color = Color(0.72549, 0, 0, 0.588235)
+
+[sub_resource type="Animation" id="Animation_e03le"]
+resource_name = "hit_flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WalkSprite:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IdleSprite:material:shader_parameter/enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_j2dyg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WalkSprite:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IdleSprite:material:shader_parameter/enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_klrag"]
+_data = {
+"RESET": SubResource("Animation_j2dyg"),
+"hit_flash": SubResource("Animation_e03le")
+}
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lh160"]
 radius = 5.0
 height = 22.0
@@ -100,15 +172,23 @@ libraries = {
 speed_scale = 0.8
 
 [node name="IdleSprite" type="Sprite2D" parent="Animation"]
-visible = false
 z_index = -1
+material = SubResource("ShaderMaterial_10no0")
 texture = ExtResource("2_oleco")
 hframes = 4
 
 [node name="WalkSprite" type="Sprite2D" parent="Animation"]
 z_index = -1
+material = SubResource("ShaderMaterial_kqe61")
+position = Vector2(2, 0)
 texture = ExtResource("3_8do3s")
 hframes = 6
+
+[node name="HitFlashAnimation" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Animation")
+libraries = {
+"": SubResource("AnimationLibrary_klrag")
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -166,6 +246,7 @@ visible = false
 shape = SubResource("CircleShape2D_1swup")
 
 [node name="GrabArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 8
 
@@ -173,6 +254,7 @@ collision_mask = 8
 shape = SubResource("CircleShape2D_7pioq")
 
 [node name="CollectArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 8
 

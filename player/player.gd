@@ -8,9 +8,11 @@ var experience_level = 1
 var collected_experience = 0
 
 @onready var animation = $Animation
+@onready var hit_flash_animation = $HitFlashAnimation
 @onready var idle_sprite = $Animation/IdleSprite
 @onready var walk_sprite = $Animation/WalkSprite
 @onready var collision_shape = $CollisionShape2D
+
 
 #Weapons
 var fireball = preload("res://player/weapons/fireball.tscn")
@@ -37,7 +39,7 @@ var shooting_star_baseammo = 1
 var shooting_star_level = 0
 
 #BlackHole
-var black_hole_level = 1
+var black_hole_level = 0
 
 #LightningBolt
 var lightning_bolt_ammo = 0
@@ -100,6 +102,7 @@ func movement(delta):
 func _on_hurtbox_hurt(damage, _angle, _knockback):
 	hp -= damage
 	print(hp)
+	hit_flash_animation.play("hit_flash")
 
 
 func _on_fireball_timer_timeout():
