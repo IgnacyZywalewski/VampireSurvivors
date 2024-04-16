@@ -40,7 +40,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4s3rv"]
-size = Vector2(54, 22)
+size = Vector2(54, 26)
 
 [node name="LightningBolt" type="Area2D" groups=["attack"]]
 top_level = true
@@ -60,9 +60,10 @@ root_node = NodePath("../CollisionShape2D")
 libraries = {
 "": SubResource("AnimationLibrary_qnksf")
 }
-speed_scale = 1.5
+speed_scale = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 2)
 shape = SubResource("RectangleShape2D_4s3rv")
 
 [connection signal="animation_finished" from="LightningBoltAnimation" to="." method="_on_lightning_bolt_animation_animation_finished"]

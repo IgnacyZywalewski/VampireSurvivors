@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var movement_speed = 40.0
+var movement_speed = 80.0
 var hp = 100
 
 var experience = 0
@@ -12,6 +12,8 @@ var collected_experience = 0
 @onready var idle_sprite = $Animation/IdleSprite
 @onready var walk_sprite = $Animation/WalkSprite
 @onready var collision_shape = $CollisionShape2D
+@onready var experience_bar = get_node("%ExperienceBar")
+@onready var level_label = get_node("%LevelLabel")
 
 
 #Weapons
@@ -43,14 +45,15 @@ var black_hole_level = 0
 
 #LightningBolt
 var lightning_bolt_ammo = 0
-var lightning_bolt_baseammo = 1
-var lightning_bolt_level = 0
+var lightning_bolt_baseammo = 10
+var lightning_bolt_level = 1
 
 #Enemy
 var enemy_close = []
 
 func _ready():
 	attack()
+	set_experience_bar(experience, callculate_experience_cap())
 
 func attack():
 	if fireball_level > 0 and fireball_timer.is_stopped():
@@ -95,7 +98,7 @@ func movement(delta):
 		
 	walk_sprite.global_position = global_position
 	idle_sprite.global_position = global_position
-	collision_shape.global_position = global_position
+	#collision_shape.glaobal_position = global_position
 	velocity = mov.normalized() * movement_speed
 	move_and_slide()
 
@@ -197,19 +200,22 @@ func _on_collect_area_area_entered(area):
 		var gem_exp = area.collect() 
 		callculate_experience(gem_exp)
 
-func callculate_experience(gem_exp):
-	var exp_required = callculate_experience_cap()
-	collected_experience += gem_exp
-	if experience + collected_experience >= exp_required:
-		collected_experience -= exp_required - experience
+func callculate_experience(gem_experience):
+	var experience_required = callculate_experience_cap()
+	collected_experience += gem_experience
+	if experience + collected_experience >= experience_required:
+		collected_experience -= experience_required - experience
 		experience_level += 1
 		experience = 0
-		exp_required = callculate_experience_cap()
+		experience_required = callculate_experience_cap()
 		callculate_experience(0)
+		level_label.text = str("Level: ", experience_level)
 	else:
 		experience += collected_experience
 		collected_experience = 0
 	
+	set_experience_bar(experience, experience_required)
+
 func callculate_experience_cap():
 	var exp_cap = experience_level
 	if experience_level < 20:
@@ -219,3 +225,7 @@ func callculate_experience_cap():
 	else:
 		exp_cap = 255 + (experience_level-39) * 12
 	return exp_cap
+
+func set_experience_bar(set_value = 1, set_max_value = 100):
+	experience_bar.value = set_value
+	experience_bar.max_value = set_max_value

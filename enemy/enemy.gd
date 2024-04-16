@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var movement_speed = 30.0
+@export var movement_speed = 70.0
 @export var hp = 10
 @export var knockback_recovery = 3.5
 @export_enum("easy", "medium", "hard") var enemy_difficulty = 0
