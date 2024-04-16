@@ -4,7 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://31ryctxmwb7r" path="res://assets/audio/collect_gem.mp3" id="2_4onmi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_stg78"]
-size = Vector2(14, 16)
+size = Vector2(12, 14)
 
 [node name="ExperienceGem" type="Area2D" groups=["loot"]]
 collision_layer = 8

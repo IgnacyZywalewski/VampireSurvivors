@@ -1,7 +1,8 @@
 extends CharacterBody2D
 
-var movement_speed = 80.0
-var hp = 100
+@export var movement_speed = 80.0
+@export var health = 100
+var turned_left = false
 
 var experience = 0
 var experience_level = 1
@@ -14,6 +15,7 @@ var collected_experience = 0
 @onready var collision_shape = $CollisionShape2D
 @onready var experience_bar = get_node("%ExperienceBar")
 @onready var level_label = get_node("%LevelLabel")
+@onready var health_bar = $HealthBar
 
 
 #Weapons
@@ -33,9 +35,9 @@ var lightning_bolt = preload("res://player/weapons/lightning_bolt.tscn")
 #Fireball
 var fireball_ammo = 0
 var fireball_baseammo = 1
-var fireball_level = 0
+var fireball_level = 1
 
-#Shooting star
+#Shooting starssssssssssss
 var shooting_star_ammo = 0
 var shooting_star_baseammo = 1
 var shooting_star_level = 0
@@ -45,8 +47,8 @@ var black_hole_level = 0
 
 #LightningBolt
 var lightning_bolt_ammo = 0
-var lightning_bolt_baseammo = 10
-var lightning_bolt_level = 1
+var lightning_bolt_baseammo = 1
+var lightning_bolt_level = 0
 
 #Enemy
 var enemy_close = []
@@ -54,6 +56,7 @@ var enemy_close = []
 func _ready():
 	attack()
 	set_experience_bar(experience, callculate_experience_cap())
+	health_bar.init_health(health)
 
 func attack():
 	if fireball_level > 0 and fireball_timer.is_stopped():
@@ -65,16 +68,16 @@ func attack():
 	if black_hole_level > 0:
 		var black_hole_attack = black_hole.instantiate()
 		black_hole_attack.level = black_hole_level
-		black_hole_attack.position = position
+		black_hole_attack.global_position = global_position
 		add_child(black_hole_attack)
 		
 	if lightning_bolt_level > 0 and lightning_bolt_timer.is_stopped():
 		lightning_bolt_timer.start()
 
-func _physics_process(delta):
-	movement(delta)
+func _physics_process(_delta):
+	movement()
 
-func movement(delta):
+func movement():
 	var x_mov = Input.get_action_strength("right") - Input.get_action_strength("left")
 	var y_mov = Input.get_action_strength("down") - Input.get_action_strength("up")
 	var mov = Vector2(x_mov, y_mov)
@@ -98,13 +101,14 @@ func movement(delta):
 		
 	walk_sprite.global_position = global_position
 	idle_sprite.global_position = global_position
-	#collision_shape.glaobal_position = global_position
+	
 	velocity = mov.normalized() * movement_speed
 	move_and_slide()
 
 func _on_hurtbox_hurt(damage, _angle, _knockback):
-	hp -= damage
-	print(hp)
+	health -= damage
+	health_bar.health = health
+	print(health)
 	hit_flash_animation.play("hit_flash")
 
 

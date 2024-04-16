@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bmxo6hqjvdv1n"]
+[gd_scene load_steps=24 format=3 uid="uid://bmxo6hqjvdv1n"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_vc33i"]
 [ext_resource type="Texture2D" uid="uid://db3bl0qcr6u21" path="res://assets/textures/player/Owlet_Monster_Idle.png" id="2_oleco"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cwmo7k842cuam" path="res://utility/hurt_box.tscn" id="3_gx2gy"]
 [ext_resource type="Shader" uid="uid://d3lq2lub4t11s" path="res://enemy/hit_flash.tres" id="3_jvlhe"]
 [ext_resource type="FontFile" uid="uid://d4a3w6dx63g5p" path="res://assets/fonts/Planes_ValMore.ttf" id="6_0rvr0"]
+[ext_resource type="PackedScene" uid="uid://brwtjelihi5mj" path="res://ui/health_bar.tscn" id="7_j0eem"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_khjtk"]
 radius = 6.0
@@ -194,7 +195,6 @@ libraries = {
 speed_scale = 0.8
 
 [node name="IdleSprite" type="Sprite2D" parent="Animation"]
-visible = false
 material = SubResource("ShaderMaterial_10no0")
 texture = ExtResource("2_oleco")
 hframes = 4
@@ -202,7 +202,6 @@ hframes = 4
 [node name="WalkSprite" type="Sprite2D" parent="Animation"]
 visible = false
 material = SubResource("ShaderMaterial_kqe61")
-position = Vector2(2, 0)
 texture = ExtResource("3_8do3s")
 hframes = 6
 
@@ -268,6 +267,7 @@ collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GrabArea"]
+position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_7pioq")
 
 [node name="CollectArea" type="Area2D" parent="."]
@@ -310,6 +310,12 @@ theme_override_fonts/font = ExtResource("6_0rvr0")
 theme_override_font_sizes/font_size = 13
 text = "Level: 1"
 vertical_alignment = 1
+
+[node name="HealthBar" parent="." instance=ExtResource("7_j0eem")]
+offset_left = -15.0
+offset_top = 19.0
+offset_right = 15.0
+offset_bottom = 22.0
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
 [connection signal="timeout" from="Attack/FireballTimer" to="." method="_on_fireball_timer_timeout"]
