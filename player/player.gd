@@ -2,11 +2,12 @@ extends CharacterBody2D
 
 @export var movement_speed = 80.0
 @export var health = 100
-var turned_left = false
 
 var experience = 0
 var experience_level = 1
 var collected_experience = 0
+
+var time = 0
 
 @onready var animation = $Animation
 @onready var hit_flash_animation = $HitFlashAnimation
@@ -15,8 +16,8 @@ var collected_experience = 0
 @onready var collision_shape = $CollisionShape2D
 @onready var experience_bar = get_node("%ExperienceBar")
 @onready var level_label = get_node("%LevelLabel")
+@onready var time_label = get_node("%TimerLabel")
 @onready var health_bar = $HealthBar
-
 
 #Weapons
 var fireball = preload("res://player/weapons/fireball.tscn")
@@ -233,3 +234,13 @@ func callculate_experience_cap():
 func set_experience_bar(set_value = 1, set_max_value = 100):
 	experience_bar.value = set_value
 	experience_bar.max_value = set_max_value
+
+func change_time(argtime = 0):
+	time = argtime
+	var get_s = time % 60
+	var get_m = int(time/60)
+	if get_s < 10:
+		get_s = str(0, get_s)
+	if get_m < 10:
+		get_m = str(0, get_m)
+	time_label.text = str(get_m, ":", get_s)
