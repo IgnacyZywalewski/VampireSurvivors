@@ -13,6 +13,7 @@ var time = 0
 @onready var hit_flash_animation = $HitFlashAnimation
 @onready var idle_sprite = $Animation/IdleSprite
 @onready var walk_sprite = $Animation/WalkSprite
+@onready var death_sprite = $Animation/DeathSprite
 @onready var collision_shape = $CollisionShape2D
 @onready var experience_bar = get_node("%ExperienceBar")
 @onready var level_label = get_node("%LevelLabel")
@@ -41,15 +42,15 @@ var fireball_level = 1
 #Shooting starssssssssssss
 var shooting_star_ammo = 0
 var shooting_star_baseammo = 1
-var shooting_star_level = 0
+var shooting_star_level = 1
 
 #BlackHole
-var black_hole_level = 0
+var black_hole_level = 1
 
 #LightningBolt
 var lightning_bolt_ammo = 0
 var lightning_bolt_baseammo = 1
-var lightning_bolt_level = 0
+var lightning_bolt_level = 1
 
 #Enemy
 var enemy_close = []
@@ -111,6 +112,11 @@ func _on_hurtbox_hurt(damage, _angle, _knockback):
 	health_bar.health = health
 	print(health)
 	hit_flash_animation.play("hit_flash")
+	#if health <= 0:
+		#walk_sprite.visible = false
+		#idle_sprite.visible = false
+		#death_sprite.visible = true
+		#animation.play("death")
 
 
 func _on_fireball_timer_timeout():
@@ -171,7 +177,7 @@ func get_random_target():
 	if enemy_close.size() > 0:
 		return enemy_close.pick_random().position
 	else:
-		return Vector2.UP 
+		return Vector2.UP
 
 func get_nearest_target():
 	var nearest_distance = INF

@@ -4,4 +4,4 @@ extends Area2D
 @onready var collision = $CollisionShape2D
 
 var hurt_box_type = "cooldown"
-var cooldown_timer = 1
+@export var cooldown_timer = 1

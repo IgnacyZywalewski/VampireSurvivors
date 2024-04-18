@@ -18,7 +18,7 @@ func _ready():
 	match level:
 		1:
 			damage = 2
-			cooldown_timer = 0.5
+			cooldown_timer = 2
 			sprite.scale = Vector2(2,2)
 			collision_shape.scale = Vector2(2,2)
 			knockback_amount = 100
