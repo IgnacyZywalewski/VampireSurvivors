@@ -131,6 +131,8 @@ func _on_animation_animation_finished(anim_name: String):
 	if anim_name == "death":
 		get_tree().paused = true
 
+
+
 func _on_fireball_timer_timeout():
 	fireball_ammo += fireball_baseammo
 	fireball_attack_timer.start()
@@ -261,5 +263,3 @@ func change_time(argtime = 0):
 	if get_m < 10:
 		get_m = str(0, get_m)
 	time_label.text = str(get_m, ":", get_s)
-
-

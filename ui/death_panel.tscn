@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://cuvyq7snegdrn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_li0er"]
+bg_color = Color(0.745098, 0.745098, 0.745098, 0.811765)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.152941, 0.152941, 0.152941, 1)
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
+expand_margin_left = 7.0
+expand_margin_top = 7.0
+expand_margin_right = 7.0
+expand_margin_bottom = 7.0
+shadow_offset = Vector2(0, 3)
+
+[node name="DeathPanel" type="Panel"]
+offset_left = 218.0
+offset_top = 25.0
+offset_right = 473.0
+offset_bottom = 328.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_li0er")

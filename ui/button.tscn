@@ -8,8 +8,10 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s14yl"]
 
 [node name="Button" type="Button"]
-offset_right = 80.0
-offset_bottom = 35.0
+offset_left = 270.0
+offset_top = 167.0
+offset_right = 350.0
+offset_bottom = 202.0
 theme_override_fonts/font = ExtResource("1_4uup8")
 theme_override_styles/normal = ExtResource("2_xvwiu")
 theme_override_styles/hover = ExtResource("3_4nxpl")

@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://csxjr3efr6gm6"]
+[gd_scene load_steps=17 format=3 uid="uid://csxjr3efr6gm6"]
 
 [ext_resource type="Texture2D" uid="uid://dl7kj1pkev3sw" path="res://assets/textures/enemy/ToxicHound.png" id="1_if8li"]
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="2_af3qh"]
 [ext_resource type="Shader" uid="uid://d3lq2lub4t11s" path="res://enemy/hit_flash.tres" id="2_fplmm"]
 [ext_resource type="PackedScene" uid="uid://26fnsvubgu2t" path="res://utility/hit_box.tscn" id="2_pxsxp"]
 [ext_resource type="PackedScene" uid="uid://cwmo7k842cuam" path="res://utility/hurt_box.tscn" id="3_jl5fg"]
+[ext_resource type="PackedScene" uid="uid://bynupway77h0v" path="res://ui/shadow.tscn" id="4_frr13"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yfpd5"]
 resource_local_to_scene = true
@@ -113,6 +114,13 @@ material = SubResource("ShaderMaterial_yfpd5")
 scale = Vector2(1.62891, 1.49414)
 texture = ExtResource("1_if8li")
 hframes = 4
+
+[node name="Shadow" parent="." instance=ExtResource("4_frr13")]
+z_index = -1
+offset_left = -8.0
+offset_top = 7.0
+offset_right = 8.0
+offset_bottom = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

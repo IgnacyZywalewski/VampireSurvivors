@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://bdpyhfut4aucp"]
+[gd_scene load_steps=17 format=3 uid="uid://bdpyhfut4aucp"]
 
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_obvar"]
 [ext_resource type="Texture2D" uid="uid://d2xne6o0pp0tt" path="res://assets/textures/enemy/VampireBat.png" id="2_ahhqo"]
 [ext_resource type="Shader" uid="uid://d3lq2lub4t11s" path="res://enemy/hit_flash.tres" id="2_wly23"]
 [ext_resource type="PackedScene" uid="uid://26fnsvubgu2t" path="res://utility/hit_box.tscn" id="3_66cbj"]
 [ext_resource type="PackedScene" uid="uid://cwmo7k842cuam" path="res://utility/hurt_box.tscn" id="4_mtmkx"]
+[ext_resource type="PackedScene" uid="uid://bynupway77h0v" path="res://ui/shadow.tscn" id="4_saora"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yfpd5"]
 resource_local_to_scene = true
@@ -109,6 +110,14 @@ material = SubResource("ShaderMaterial_yfpd5")
 scale = Vector2(1.13281, 1.11328)
 texture = ExtResource("2_ahhqo")
 hframes = 4
+
+[node name="Shadow" parent="." instance=ExtResource("4_saora")]
+z_index = -1
+offset_left = -1.0
+offset_top = 7.0
+offset_right = 1.0
+offset_bottom = 7.0
+rotation = 1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

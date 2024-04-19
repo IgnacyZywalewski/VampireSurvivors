@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://bynupway77h0v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dpu1t"]
+bg_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+expand_margin_top = 4.0
+expand_margin_bottom = 4.0
+shadow_color = Color(0, 0, 0, 0.34902)
+shadow_size = 3
+
+[node name="Shadow" type="Panel"]
+offset_left = 93.0
+offset_top = 56.0
+offset_right = 125.0
+offset_bottom = 68.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dpu1t")

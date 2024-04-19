@@ -1,6 +1,7 @@
-[gd_scene load_steps=27 format=3 uid="uid://bmxo6hqjvdv1n"]
+[gd_scene load_steps=28 format=3 uid="uid://bmxo6hqjvdv1n"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_vc33i"]
+[ext_resource type="PackedScene" uid="uid://bynupway77h0v" path="res://ui/shadow.tscn" id="2_iy0i6"]
 [ext_resource type="Texture2D" uid="uid://db3bl0qcr6u21" path="res://assets/textures/player/Owlet_Monster_Idle.png" id="2_oleco"]
 [ext_resource type="Texture2D" uid="uid://cvkexxxiw7dq8" path="res://assets/textures/player/Owlet_Monster_Walk.png" id="3_8do3s"]
 [ext_resource type="PackedScene" uid="uid://cwmo7k842cuam" path="res://utility/hurt_box.tscn" id="3_gx2gy"]
@@ -223,6 +224,13 @@ position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_khjtk")
 disabled = true
 
+[node name="Shadow" parent="." instance=ExtResource("2_iy0i6")]
+z_index = -1
+offset_left = -11.0
+offset_top = 17.0
+offset_right = 6.0
+offset_bottom = 17.0
+
 [node name="Animation" type="AnimationPlayer" parent="."]
 root_node = NodePath("IdleSprite")
 libraries = {
@@ -231,7 +239,6 @@ libraries = {
 speed_scale = 0.8
 
 [node name="IdleSprite" type="Sprite2D" parent="Animation"]
-visible = false
 material = SubResource("ShaderMaterial_10no0")
 texture = ExtResource("2_oleco")
 hframes = 4
@@ -367,11 +374,12 @@ text = "Level: 1"
 vertical_alignment = 1
 
 [node name="Button" parent="GUILayer/GUI" instance=ExtResource("8_tikf5")]
+visible = false
 layout_mode = 0
-offset_left = 97.0
-offset_top = 98.0
-offset_right = 177.0
-offset_bottom = 133.0
+offset_left = 281.0
+offset_top = 224.0
+offset_right = 347.0
+offset_bottom = 257.0
 
 [node name="HealthBar" parent="." instance=ExtResource("7_j0eem")]
 offset_left = -15.0
