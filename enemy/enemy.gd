@@ -3,8 +3,8 @@ extends CharacterBody2D
 @export var movement_speed = 70.0
 @export var hp = 10.0
 @export var knockback_recovery = 3.5
-@export var damage = 1.0
-@export var cooldown_timer = 1.0
+@export var enemy_damage = 1.0
+@export var enemy_hit_cooldown = 1.0
 @export_enum("easy", "medium", "hard") var enemy_difficulty = 0
 var knockback = Vector2.ZERO
 
@@ -21,8 +21,8 @@ signal remove_from_array(object)
 
 func _ready():
 	animation.play("walk")
-	hitbox.damage = damage
-	hitbox.cooldown_timer = cooldown_timer
+	hitbox.damage = enemy_damage
+	hitbox.cooldown_timer = enemy_hit_cooldown
 
 func _physics_process(_delta):
 	knockback = knockback.move_toward(Vector2.ZERO, knockback_recovery)

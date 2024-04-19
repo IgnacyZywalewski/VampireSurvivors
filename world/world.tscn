@@ -1,26 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://c62gaa0b2pj0"]
+[gd_scene load_steps=7 format=3 uid="uid://c62gaa0b2pj0"]
 
 [ext_resource type="Texture2D" uid="uid://dvthbnjwikiex" path="res://assets/textures/terrain/grass.png" id="1_cyl10"]
 [ext_resource type="PackedScene" uid="uid://bmxo6hqjvdv1n" path="res://player/player.tscn" id="2_5yv6o"]
 [ext_resource type="PackedScene" uid="uid://n3dmfye7aojd" path="res://utility/enemy_spawner.tscn" id="3_sxik3"]
-[ext_resource type="PackedScene" uid="uid://bdpyhfut4aucp" path="res://enemy/enemy_bat.tscn" id="4_j770d"]
 [ext_resource type="Script" path="res://utility/spawn_info.gd" id="5_sd5ls"]
 [ext_resource type="PackedScene" uid="uid://csxjr3efr6gm6" path="res://enemy/enemy_hound.tscn" id="6_jxc03"]
-
-[sub_resource type="Resource" id="Resource_k16u3"]
-script = ExtResource("5_sd5ls")
-time_start = 0
-time_end = 60
-enemy = ExtResource("4_j770d")
-enemy_num = 2
-enemy_spawn_delay = 0
 
 [sub_resource type="Resource" id="Resource_x5ib5"]
 script = ExtResource("5_sd5ls")
 time_start = 0
-time_end = 60
+time_end = 1
 enemy = ExtResource("6_jxc03")
-enemy_num = 2
+enemy_num = 1
 enemy_spawn_delay = 0
 
 [node name="World" type="Node2D"]
@@ -40,6 +31,6 @@ region_rect = Rect2(0, 0, 1280, 720)
 [node name="Player" parent="." instance=ExtResource("2_5yv6o")]
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_sxik3")]
-spawns = Array[ExtResource("5_sd5ls")]([SubResource("Resource_k16u3"), SubResource("Resource_x5ib5")])
+spawns = Array[ExtResource("5_sd5ls")]([SubResource("Resource_x5ib5")])
 
 [node name="Loot" type="Node2D" parent="." groups=["loot"]]

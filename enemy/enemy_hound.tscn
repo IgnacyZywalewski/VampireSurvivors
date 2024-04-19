@@ -105,8 +105,8 @@ script = ExtResource("2_af3qh")
 movement_speed = 40.0
 hp = 25.0
 knockback_recovery = 5.0
-damage = 2.0
-cooldown_timer = 0.9
+enemy_damage = 3.0
+enemy_hit_cooldown = 0.5
 
 [node name="Sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_yfpd5")

@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var movement_speed = 80.0
 @export var health = 100
+var dead = false
 
 var experience = 0
 var experience_level = 1
@@ -9,16 +10,19 @@ var collected_experience = 0
 
 var time = 0
 
-@onready var animation = $Animation
+@onready var animation_tree = $Animation
 @onready var hit_flash_animation = $HitFlashAnimation
 @onready var idle_sprite = $Animation/IdleSprite
 @onready var walk_sprite = $Animation/WalkSprite
 @onready var death_sprite = $Animation/DeathSprite
 @onready var collision_shape = $CollisionShape2D
+
+#Gui
 @onready var experience_bar = get_node("%ExperienceBar")
 @onready var level_label = get_node("%LevelLabel")
 @onready var time_label = get_node("%TimerLabel")
 @onready var health_bar = $HealthBar
+#@onready var pause_button = get_node("%PauseButton")
 
 #Weapons
 var fireball = preload("res://player/weapons/fireball.tscn")
@@ -37,20 +41,20 @@ var lightning_bolt = preload("res://player/weapons/lightning_bolt.tscn")
 #Fireball
 var fireball_ammo = 0
 var fireball_baseammo = 1
-var fireball_level = 1
+var fireball_level = 0
 
 #Shooting starssssssssssss
 var shooting_star_ammo = 0
 var shooting_star_baseammo = 1
-var shooting_star_level = 1
+var shooting_star_level = 0
 
 #BlackHole
-var black_hole_level = 1
+var black_hole_level = 0
 
 #LightningBolt
 var lightning_bolt_ammo = 0
 var lightning_bolt_baseammo = 1
-var lightning_bolt_level = 1
+var lightning_bolt_level = 0
 
 #Enemy
 var enemy_close = []
@@ -77,7 +81,8 @@ func attack():
 		lightning_bolt_timer.start()
 
 func _physics_process(_delta):
-	movement()
+	if dead == false:
+		movement()
 
 func movement():
 	var x_mov = Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -95,11 +100,11 @@ func movement():
 	if mov != Vector2.ZERO:
 		idle_sprite.visible = false
 		walk_sprite.visible = true
-		animation.play("walk")
+		animation_tree.play("walk")
 	else:
 		idle_sprite.visible = true
 		walk_sprite.visible = false
-		animation.play("idle")
+		animation_tree.play("idle")
 		
 	walk_sprite.global_position = global_position
 	idle_sprite.global_position = global_position
@@ -112,12 +117,19 @@ func _on_hurtbox_hurt(damage, _angle, _knockback):
 	health_bar.health = health
 	print(health)
 	hit_flash_animation.play("hit_flash")
-	#if health <= 0:
-		#walk_sprite.visible = false
-		#idle_sprite.visible = false
-		#death_sprite.visible = true
-		#animation.play("death")
+	if health <= 0:
+		dead = true
+		death()
 
+func death():
+	walk_sprite.visible = false
+	idle_sprite.visible = false
+	death_sprite.visible = true
+	animation_tree.play("death")
+
+func _on_animation_animation_finished(anim_name: String):
+	if anim_name == "death":
+		get_tree().paused = true
 
 func _on_fireball_timer_timeout():
 	fireball_ammo += fireball_baseammo
@@ -171,7 +183,6 @@ func _on_lightning_bolt_attack_timer_timeout():
 			lightning_bolt_attack_timer.start()
 		else:
 			lightning_bolt_attack_timer.stop()
-
 
 func get_random_target():
 	if enemy_close.size() > 0:
@@ -250,3 +261,5 @@ func change_time(argtime = 0):
 	if get_m < 10:
 		get_m = str(0, get_m)
 	time_label.text = str(get_m, ":", get_s)
+
+

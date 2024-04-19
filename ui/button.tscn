@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=3 uid="uid://b64b3cgyw4prq"]
+
+[ext_resource type="FontFile" uid="uid://d4a3w6dx63g5p" path="res://assets/fonts/Planes_ValMore.ttf" id="1_4uup8"]
+[ext_resource type="StyleBox" uid="uid://bbqlt34oui8dt" path="res://ui/button_normal.tres" id="2_xvwiu"]
+[ext_resource type="StyleBox" uid="uid://blw8pbvxsqbwj" path="res://ui/button_hover.tres" id="3_4nxpl"]
+[ext_resource type="StyleBox" uid="uid://cjww48vgd1uam" path="res://ui/button_pressed.tres" id="4_m82qi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s14yl"]
+
+[node name="Button" type="Button"]
+offset_right = 80.0
+offset_bottom = 35.0
+theme_override_fonts/font = ExtResource("1_4uup8")
+theme_override_styles/normal = ExtResource("2_xvwiu")
+theme_override_styles/hover = ExtResource("3_4nxpl")
+theme_override_styles/pressed = ExtResource("4_m82qi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_s14yl")
+text = "Text"
