@@ -10,6 +10,8 @@ var collected_experience = 0
 
 var time = 0
 
+var level = "res://world/world.tscn"
+
 @onready var animation_tree = $Animation
 @onready var hit_flash_animation = $HitFlashAnimation
 @onready var idle_sprite = $Animation/IdleSprite
@@ -22,7 +24,8 @@ var time = 0
 @onready var level_label = get_node("%LevelLabel")
 @onready var time_label = get_node("%TimerLabel")
 @onready var health_bar = $HealthBar
-#@onready var pause_button = get_node("%PauseButton")
+@onready var result_label = get_node("%ResultLabel")
+@onready var death_panel = get_node("%DeathPanel")
 
 #Weapons
 var fireball = preload("res://player/weapons/fireball.tscn")
@@ -92,10 +95,12 @@ func movement():
 	if mov.x < 0:
 		walk_sprite.flip_h = true
 		idle_sprite.flip_h = true
+		death_sprite.flip_h = true
 		
 	elif mov.x > 0:
 		walk_sprite.flip_h = false
 		idle_sprite.flip_h = false
+		death_sprite.flip_h = false
 		
 	if mov != Vector2.ZERO:
 		idle_sprite.visible = false
@@ -125,11 +130,16 @@ func death():
 	walk_sprite.visible = false
 	idle_sprite.visible = false
 	death_sprite.visible = true
+	death_sprite.position = idle_sprite.global_position
 	animation_tree.play("death")
 
-func _on_animation_animation_finished(anim_name: String):
+func _on_animation_animation_finished(anim_name):
 	if anim_name == "death":
 		get_tree().paused = true
+		death_panel.visible = true
+		var tween = death_panel.create_tween()
+		tween.tween_property(death_panel, "position", Vector2(220, 65), 3.0).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+		tween.play()
 
 
 
@@ -263,3 +273,12 @@ func change_time(argtime = 0):
 	if get_m < 10:
 		get_m = str(0, get_m)
 	time_label.text = str(get_m, ":", get_s)
+
+
+func _on_replay_button_pressed():
+	dead = false
+	get_tree().paused = false
+	get_tree().change_scene_to_file(level)
+
+func _on_quit_button_pressed():
+	get_tree().quit()

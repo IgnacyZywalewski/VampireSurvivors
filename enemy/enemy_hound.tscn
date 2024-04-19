@@ -117,10 +117,10 @@ hframes = 4
 
 [node name="Shadow" parent="." instance=ExtResource("4_frr13")]
 z_index = -1
-offset_left = -8.0
+offset_left = -10.0
 offset_top = 7.0
-offset_right = 8.0
-offset_bottom = 10.0
+offset_right = 11.0
+offset_bottom = 9.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
