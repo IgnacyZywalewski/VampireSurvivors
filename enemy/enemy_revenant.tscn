@@ -1,20 +1,20 @@
-[gd_scene load_steps=17 format=3 uid="uid://csxjr3efr6gm6"]
+[gd_scene load_steps=17 format=3 uid="uid://b0f6plv4okykd"]
 
-[ext_resource type="Texture2D" uid="uid://dl7kj1pkev3sw" path="res://assets/textures/enemy/ToxicHound.png" id="1_if8li"]
-[ext_resource type="Script" path="res://enemy/enemy.gd" id="2_af3qh"]
-[ext_resource type="Shader" uid="uid://d3lq2lub4t11s" path="res://enemy/hit_flash.tres" id="2_fplmm"]
-[ext_resource type="PackedScene" uid="uid://26fnsvubgu2t" path="res://utility/hit_box.tscn" id="2_pxsxp"]
-[ext_resource type="PackedScene" uid="uid://cwmo7k842cuam" path="res://utility/hurt_box.tscn" id="3_jl5fg"]
-[ext_resource type="PackedScene" uid="uid://bynupway77h0v" path="res://ui/shadow.tscn" id="4_frr13"]
+[ext_resource type="Script" path="res://enemy/enemy.gd" id="1_3hao3"]
+[ext_resource type="Shader" uid="uid://d3lq2lub4t11s" path="res://enemy/hit_flash.tres" id="2_agyi2"]
+[ext_resource type="Texture2D" uid="uid://ft0qgq5f6ak5" path="res://assets/textures/enemy/GraveRevenant.png" id="3_7ltuf"]
+[ext_resource type="PackedScene" uid="uid://bynupway77h0v" path="res://ui/shadow.tscn" id="4_h5fve"]
+[ext_resource type="PackedScene" uid="uid://26fnsvubgu2t" path="res://utility/hit_box.tscn" id="5_yne7s"]
+[ext_resource type="PackedScene" uid="uid://cwmo7k842cuam" path="res://utility/hurt_box.tscn" id="6_jngci"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yfpd5"]
 resource_local_to_scene = true
-shader = ExtResource("2_fplmm")
+shader = ExtResource("2_agyi2")
 shader_parameter/enabled = false
 shader_parameter/color = Color(1, 1, 1, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4gk7s"]
-radius = 8.0
+radius = 10.0499
 
 [sub_resource type="Animation" id="Animation_hhrgw"]
 length = 0.001
@@ -33,8 +33,9 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_g7s85"]
 resource_name = "walk"
-length = 0.7
+length = 0.6
 loop_mode = 1
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -42,10 +43,10 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"times": PackedFloat32Array(0, 0.25, 0.35, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3]
+"values": [0, 2, 3, 1]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bno4q"]
@@ -92,38 +93,40 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_20fr8"]
-size = Vector2(14, 11)
+size = Vector2(11, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wqn8"]
-size = Vector2(20, 13)
+size = Vector2(17, 25)
 
-[node name="EnemyHound" type="CharacterBody2D" groups=["enemy"]]
+[node name="EnemyRevenant" type="CharacterBody2D" groups=["enemy"]]
 z_index = 1
 collision_layer = 5
 collision_mask = 5
 motion_mode = 1
-script = ExtResource("2_af3qh")
-movement_speed = 40.0
+script = ExtResource("1_3hao3")
+movement_speed = 60.0
 hp = 25.0
-knockback_recovery = 5.0
-enemy_damage = 3.0
+knockback_recovery = 2.0
+enemy_damage = 4.0
+enemy_difficulty = 1
 
 [node name="Sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_yfpd5")
-scale = Vector2(1.62891, 1.49414)
-texture = ExtResource("1_if8li")
+position = Vector2(0, -1.86265e-09)
+scale = Vector2(1.75195, 1.87207)
+texture = ExtResource("3_7ltuf")
 hframes = 4
 
-[node name="Shadow" parent="." instance=ExtResource("4_frr13")]
+[node name="Shadow" parent="." instance=ExtResource("4_h5fve")]
 z_index = -1
-offset_left = -10.0
-offset_top = 7.0
-offset_right = 11.0
-offset_bottom = 9.0
+offset_left = 4.0
+offset_top = 13.0
+offset_right = 7.0
+offset_bottom = 21.0
+rotation = 1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2(2, 4)
 shape = SubResource("CircleShape2D_4gk7s")
 
 [node name="Animation" type="AnimationPlayer" parent="."]
@@ -131,6 +134,7 @@ root_node = NodePath("../Sprite")
 libraries = {
 "": SubResource("AnimationLibrary_bno4q")
 }
+speed_scale = 0.8
 
 [node name="HitFlashAnimation" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite")
@@ -138,23 +142,23 @@ libraries = {
 "": SubResource("AnimationLibrary_hxnox")
 }
 
-[node name="Hitbox" parent="." instance=ExtResource("2_pxsxp")]
+[node name="Hitbox" parent="." instance=ExtResource("5_yne7s")]
 visible = false
 position = Vector2(0, 1)
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2(1, 3.5)
+position = Vector2(0.5, 1)
 shape = SubResource("RectangleShape2D_20fr8")
 
-[node name="Hurtbox" parent="." instance=ExtResource("3_jl5fg")]
+[node name="Hurtbox" parent="." instance=ExtResource("6_jngci")]
 visible = false
 collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
-position = Vector2(1, 4)
+position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_6wqn8")
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]

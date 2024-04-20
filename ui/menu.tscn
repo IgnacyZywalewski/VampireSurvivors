@@ -47,5 +47,5 @@ text = "Temp Menu"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="ColorRect/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="ColorRect/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="click_end" from="ColorRect/StartButton" to="." method="_on_start_button_click_end"]
+[connection signal="click_end" from="ColorRect/ExitButton" to="." method="_on_exit_button_click_end"]

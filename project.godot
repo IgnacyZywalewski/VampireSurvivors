@@ -27,6 +27,16 @@ window/stretch/mode="canvas_items"
 
 run/main_run_args="--rendering-driver opengl3"
 
+[importer_defaults]
+
+mp3={
+"bar_beats": 4,
+"beat_count": 0,
+"bpm": 0.0,
+"loop": false,
+"loop_offset": 2.0
+}
+
 [input]
 
 up={

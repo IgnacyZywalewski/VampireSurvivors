@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://b64b3cgyw4prq"]
+[gd_scene load_steps=8 format=3 uid="uid://b64b3cgyw4prq"]
 
 [ext_resource type="FontFile" uid="uid://d4a3w6dx63g5p" path="res://assets/fonts/Planes_ValMore.ttf" id="1_4uup8"]
 [ext_resource type="StyleBox" uid="uid://bbqlt34oui8dt" path="res://ui/button_normal.tres" id="2_xvwiu"]
 [ext_resource type="StyleBox" uid="uid://blw8pbvxsqbwj" path="res://ui/button_hover.tres" id="3_4nxpl"]
 [ext_resource type="StyleBox" uid="uid://cjww48vgd1uam" path="res://ui/button_pressed.tres" id="4_m82qi"]
 [ext_resource type="Script" path="res://ui/button.gd" id="5_shtft"]
+[ext_resource type="AudioStream" uid="uid://dosw6tpty4ti" path="res://assets/audio/click_sound.mp3" id="6_di6a8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s14yl"]
 
@@ -21,10 +22,9 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_s14yl")
 text = "Text"
 script = ExtResource("5_shtft")
 
-[node name="snd_hover" type="AudioStreamPlayer" parent="."]
-
 [node name="snd_click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_di6a8")
+volume_db = -10.0
 
-[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="." to="." method="_on_pressed"]
 [connection signal="finished" from="snd_click" to="." method="_on_snd_click_finished"]

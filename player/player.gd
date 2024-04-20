@@ -52,7 +52,7 @@ var shooting_star_baseammo = 1
 var shooting_star_level = 0
 
 #BlackHole
-var black_hole_level = 0
+var black_hole_level = 1
 
 #LightningBolt
 var lightning_bolt_ammo = 0
@@ -139,7 +139,7 @@ func _on_animation_animation_finished(anim_name):
 		death_panel.visible = true
 		
 		var tween = death_panel.create_tween()
-		tween.tween_property(death_panel, "position", Vector2(220, 65), 3.0).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+		tween.tween_property(death_panel, "position", Vector2(220, 65), 2.0).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 		tween.play()
 
 
@@ -277,15 +277,16 @@ func change_time(argtime = 0):
 	time_label.text = str(get_m, ":", get_s)
 
 
-func _on_replay_button_pressed():
+
+func _on_replay_button_click_end():
 	dead = false
 	get_tree().paused = false
 	get_tree().change_scene_to_file(level)
 
-func _on_menu_button_pressed():
+func _on_menu_button_click_end():
 	dead = false
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://ui/menu.tscn")
 
-func _on_exit_button_pressed():
-	get_tree().quit()
+func _on_exit_button_click_end():
+		get_tree().quit()
