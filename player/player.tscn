@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bmxo6hqjvdv1n"]
+[gd_scene load_steps=30 format=3 uid="uid://bmxo6hqjvdv1n"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_vc33i"]
 [ext_resource type="PackedScene" uid="uid://bynupway77h0v" path="res://ui/shadow.tscn" id="2_iy0i6"]
@@ -124,6 +124,11 @@ shader = ExtResource("3_jvlhe")
 shader_parameter/enabled = false
 shader_parameter/color = Color(0.72549, 0, 0, 0.588235)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w8vd5"]
+shader = ExtResource("3_jvlhe")
+shader_parameter/enabled = false
+shader_parameter/color = Color(1, 1, 1, 1)
+
 [sub_resource type="Animation" id="Animation_j2dyg"]
 length = 0.001
 tracks/0/type = "value"
@@ -145,6 +150,18 @@ tracks/1/path = NodePath("IdleSprite:material:shader_parameter/enabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DeathSprite:material:shader_parameter/enabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -252,6 +269,7 @@ hframes = 6
 
 [node name="DeathSprite" type="Sprite2D" parent="Animation"]
 visible = false
+material = SubResource("ShaderMaterial_w8vd5")
 texture = ExtResource("5_jaj2s")
 hframes = 8
 frame = 7
@@ -400,7 +418,7 @@ offset_bottom = 165.0
 text = "Menu
 "
 
-[node name="QuitButton" parent="GUILayer/GUI/DeathPanel" instance=ExtResource("8_tikf5")]
+[node name="ExitButton" parent="GUILayer/GUI/DeathPanel" instance=ExtResource("8_tikf5")]
 layout_mode = 0
 offset_left = 60.0
 offset_top = 185.0
@@ -440,6 +458,7 @@ offset_bottom = 22.0
 [connection signal="area_entered" from="GrabArea" to="." method="_on_grab_area_area_entered"]
 [connection signal="area_entered" from="CollectArea" to="." method="_on_collect_area_area_entered"]
 [connection signal="pressed" from="GUILayer/GUI/DeathPanel/ReplayButton" to="." method="_on_replay_button_pressed"]
-[connection signal="pressed" from="GUILayer/GUI/DeathPanel/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="GUILayer/GUI/DeathPanel/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="GUILayer/GUI/DeathPanel/ExitButton" to="." method="_on_exit_button_pressed"]
 
 [editable path="Hurtbox"]

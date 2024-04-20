@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var hp = 10.0
 @export var knockback_recovery = 3.5
 @export var enemy_damage = 1.0
-@export var enemy_hit_cooldown = 1.0
+@export var enemy_hit_cooldown = 0.5
 @export_enum("easy", "medium", "hard") var enemy_difficulty = 0
 var knockback = Vector2.ZERO
 

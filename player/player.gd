@@ -137,10 +137,10 @@ func _on_animation_animation_finished(anim_name):
 	if anim_name == "death":
 		get_tree().paused = true
 		death_panel.visible = true
+		
 		var tween = death_panel.create_tween()
 		tween.tween_property(death_panel, "position", Vector2(220, 65), 3.0).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 		tween.play()
-
 
 
 func _on_fireball_timer_timeout():
@@ -195,6 +195,7 @@ func _on_lightning_bolt_attack_timer_timeout():
 			lightning_bolt_attack_timer.start()
 		else:
 			lightning_bolt_attack_timer.stop()
+
 
 func get_random_target():
 	if enemy_close.size() > 0:
@@ -264,6 +265,7 @@ func set_experience_bar(set_value = 1, set_max_value = 100):
 	experience_bar.value = set_value
 	experience_bar.max_value = set_max_value
 
+
 func change_time(argtime = 0):
 	time = argtime
 	var get_s = time % 60
@@ -280,5 +282,10 @@ func _on_replay_button_pressed():
 	get_tree().paused = false
 	get_tree().change_scene_to_file(level)
 
-func _on_quit_button_pressed():
+func _on_menu_button_pressed():
+	dead = false
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://ui/menu.tscn")
+
+func _on_exit_button_pressed():
 	get_tree().quit()

@@ -18,7 +18,6 @@ theme_override_styles/normal = ExtResource("2_xvwiu")
 theme_override_styles/hover = ExtResource("3_4nxpl")
 theme_override_styles/pressed = ExtResource("4_m82qi")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_s14yl")
-action_mode = 0
 text = "Text"
 script = ExtResource("5_shtft")
 
