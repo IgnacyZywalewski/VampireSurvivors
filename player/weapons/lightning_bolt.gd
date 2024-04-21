@@ -6,7 +6,7 @@ extends Area2D
 @onready var collision_shape = $CollisionShape2D
 
 var level = 1
-var damage = 10
+var damage = 2
 var hurt_box_type = "hit_once"
 
 var target = Vector2.ZERO
@@ -15,7 +15,7 @@ func _ready():
 	animation.play("lightning_bolt")
 	match level:
 		1:
-			damage = 10
+			damage = 2
 
 func _physics_process(_delta):
 	if (sprite.frame == 0  or sprite.frame == 7) and collision_shape.disabled == false:

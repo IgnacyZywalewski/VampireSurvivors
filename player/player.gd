@@ -26,6 +26,9 @@ var level = "res://world/world.tscn"
 @onready var health_bar = $HealthBar
 @onready var result_label = get_node("%ResultLabel")
 @onready var death_panel = get_node("%DeathPanel")
+@onready var level_up_panel = get_node("%LevelUpPanel")
+@onready var upgrade_options = get_node("%UpgradeOptions")
+@onready var item_option = preload("res://ui/item_option.tscn")
 
 #Weapons
 var fireball = preload("res://player/weapons/fireball.tscn")
@@ -44,12 +47,12 @@ var lightning_bolt = preload("res://player/weapons/lightning_bolt.tscn")
 #Fireball
 var fireball_ammo = 0
 var fireball_baseammo = 1
-var fireball_level = 0
+var fireball_level = 1
 
 #Shooting starssssssssssss
 var shooting_star_ammo = 0
 var shooting_star_baseammo = 1
-var shooting_star_level = 0
+var shooting_star_level = 1
 
 #BlackHole
 var black_hole_level = 1
@@ -57,7 +60,7 @@ var black_hole_level = 1
 #LightningBolt
 var lightning_bolt_ammo = 0
 var lightning_bolt_baseammo = 1
-var lightning_bolt_level = 0
+var lightning_bolt_level = 1
 
 #Enemy
 var enemy_close = []
@@ -243,8 +246,8 @@ func callculate_experience(gem_experience):
 		experience_level += 1
 		experience = 0
 		experience_required = callculate_experience_cap()
+		level_up()
 		callculate_experience(0)
-		level_label.text = str("Level: ", experience_level)
 	else:
 		experience += collected_experience
 		collected_experience = 0
@@ -277,7 +280,6 @@ func change_time(argtime = 0):
 	time_label.text = str(get_m, ":", get_s)
 
 
-
 func _on_replay_button_click_end():
 	dead = false
 	get_tree().paused = false
@@ -290,3 +292,22 @@ func _on_menu_button_click_end():
 
 func _on_exit_button_click_end():
 		get_tree().quit()
+
+func level_up():
+	level_label.text = str("Level: ", experience_level)
+	level_up_panel.visible = true
+	var options = 0
+	var options_max = 3
+	while options < options_max:
+		var options_choice = item_option.instantiate()
+		upgrade_options.add_child(options_choice)
+		options += 1 
+	get_tree().paused = true
+
+func upgrade_character(upgrade):
+	var option_children = upgrade_options.get_children()
+	for i in option_children:
+		i.queue_free()
+	level_up_panel.visible = false
+	get_tree().paused = false
+	callculate_experience(0)

@@ -3,7 +3,7 @@ extends Area2D
 var level = 1
 var bounce_num = 5
 var speed = 300
-var damage = 5
+var damage = 2
 var hurt_box_type = "hit_once"
 var knockback_amount = 100
 
@@ -22,7 +22,7 @@ func _ready():
 		1:
 			bounce_num = 5
 			speed = 300
-			damage = 5
+			damage = 2
 
 func _physics_process(delta):
 	position += speed * delta * angle
