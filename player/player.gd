@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var movement_speed = 80.0
 @export var health = 100
+@export var max_health = 100
 var dead = false
 
 var experience = 0
@@ -47,24 +48,29 @@ var lightning_bolt = preload("res://player/weapons/lightning_bolt.tscn")
 #Fireball
 var fireball_ammo = 0
 var fireball_baseammo = 1
-var fireball_level = 1
+var fireball_level = 0
 
-#Shooting starssssssssssss
+#ShootingStar
 var shooting_star_ammo = 0
 var shooting_star_baseammo = 1
-var shooting_star_level = 1
+var shooting_star_level = 0
 
 #BlackHole
-var black_hole_level = 1
+var black_hole_level = 0
 
 #LightningBolt
 var lightning_bolt_ammo = 0
 var lightning_bolt_baseammo = 1
-var lightning_bolt_level = 1
+var lightning_bolt_level = 0
 
 #Passives
 var shield = preload("res://player/passives/shield.tscn")
 var shield_level = 1
+var shield_amount = 0
+
+var regeneration = preload("res://player/passives/regeneration.tscn")
+var regeneration_level = 1
+var regeneration_amount = 0
 
 #Enemy
 var enemy_close = []
@@ -93,12 +99,21 @@ func attack():
 	if shield_level > 0:
 		var shield_passive = shield.instantiate()
 		shield_passive.level = shield_level
-		shield_passive.position =  global_position
+		shield_passive.position = global_position
+		shield_amount = shield_passive.shield_amount
 		add_child(shield_passive)
+		
+	if regeneration_level > 0:
+		var regeneration_passive = regeneration.instantiate()
+		regeneration_passive.level = regeneration_level
+		regeneration_passive.position = global_position
+		regeneration_amount = regeneration_passive.regeneration_amount
+		add_child(regeneration_passive)
 
 func _physics_process(_delta):
 	if dead == false:
 		movement()
+		#print(health)
 
 func movement():
 	var x_mov = Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -131,7 +146,7 @@ func movement():
 	move_and_slide()
 
 func _on_hurtbox_hurt(damage, _angle, _knockback):
-	health -= damage
+	health -= clamp(damage - shield_amount, 1.0, 999.0)
 	health_bar.health = health
 	print(health)
 	hit_flash_animation.play("hit_flash")
