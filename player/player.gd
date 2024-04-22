@@ -62,6 +62,10 @@ var lightning_bolt_ammo = 0
 var lightning_bolt_baseammo = 1
 var lightning_bolt_level = 1
 
+#Passives
+var shield = preload("res://player/passives/shield.tscn")
+var shield_level = 1
+
 #Enemy
 var enemy_close = []
 
@@ -85,6 +89,12 @@ func attack():
 		
 	if lightning_bolt_level > 0 and lightning_bolt_timer.is_stopped():
 		lightning_bolt_timer.start()
+		
+	if shield_level > 0:
+		var shield_passive = shield.instantiate()
+		shield_passive.level = shield_level
+		shield_passive.position =  global_position
+		add_child(shield_passive)
 
 func _physics_process(_delta):
 	if dead == false:
