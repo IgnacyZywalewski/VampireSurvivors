@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bmxo6hqjvdv1n"]
+[gd_scene load_steps=32 format=3 uid="uid://bmxo6hqjvdv1n"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_vc33i"]
 [ext_resource type="PackedScene" uid="uid://bynupway77h0v" path="res://ui/shadow.tscn" id="2_iy0i6"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://brwtjelihi5mj" path="res://ui/health_bar.tscn" id="7_j0eem"]
 [ext_resource type="PackedScene" uid="uid://cuvyq7snegdrn" path="res://ui/panel.tscn" id="8_3xrhe"]
 [ext_resource type="PackedScene" uid="uid://b64b3cgyw4prq" path="res://ui/button.tscn" id="8_tikf5"]
+[ext_resource type="PackedScene" uid="uid://bog7qy43ogqpo" path="res://ui/pause_screen.tscn" id="11_6xadf"]
+[ext_resource type="Texture2D" uid="uid://is565rnymiik" path="res://assets/textures/items/pause_button.png" id="12_veeya"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_khjtk"]
 radius = 5.0
@@ -447,9 +449,9 @@ process_mode = 2
 visible = false
 layout_mode = 0
 offset_left = 220.0
-offset_top = 50.0
+offset_top = 380.0
 offset_right = 420.0
-offset_bottom = 300.0
+offset_bottom = 630.0
 
 [node name="LevelUpLabel" type="Label" parent="GUILayer/GUI/LevelUpPanel"]
 layout_mode = 0
@@ -470,6 +472,20 @@ offset_top = 60.0
 offset_right = 190.0
 offset_bottom = 100.0
 theme_override_constants/separation = 10
+
+[node name="PauseScreen" parent="GUILayer/GUI" instance=ExtResource("11_6xadf")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+
+[node name="PauseButton" type="TextureButton" parent="GUILayer/GUI"]
+layout_mode = 0
+offset_left = 605.0
+offset_top = 22.0
+offset_right = 682.0
+offset_bottom = 108.0
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("12_veeya")
 
 [node name="HealthBar" parent="." instance=ExtResource("7_j0eem")]
 offset_left = -15.0
@@ -492,5 +508,6 @@ offset_bottom = 22.0
 [connection signal="click_end" from="GUILayer/GUI/DeathPanel/ReplayButton" to="." method="_on_replay_button_click_end"]
 [connection signal="click_end" from="GUILayer/GUI/DeathPanel/MenuButton" to="." method="_on_menu_button_click_end"]
 [connection signal="click_end" from="GUILayer/GUI/DeathPanel/ExitButton" to="." method="_on_exit_button_click_end"]
+[connection signal="pressed" from="GUILayer/GUI/PauseButton" to="." method="_on_pause_button_pressed"]
 
 [editable path="Hurtbox"]

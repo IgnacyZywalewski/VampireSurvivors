@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bee2j162qybrn"
-path="res://.godot/imported/black_hole_icon.png-7d9cd00c5875776f70eda2e4098d9258.ctex"
+uid="uid://cox5qkfdypebj"
+path="res://.godot/imported/regeneration_icon.png-15a29bdae3dde6c2d7a1c05c01e64020.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/weapons/black_hole_icon.png"
-dest_files=["res://.godot/imported/black_hole_icon.png-7d9cd00c5875776f70eda2e4098d9258.ctex"]
+source_file="res://assets/textures/icons/regeneration_icon.png"
+dest_files=["res://.godot/imported/regeneration_icon.png-15a29bdae3dde6c2d7a1c05c01e64020.ctex"]
 
 [params]
 

@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://bog7qy43ogqpo"]
+
+[ext_resource type="FontFile" uid="uid://d4a3w6dx63g5p" path="res://assets/fonts/Planes_ValMore.ttf" id="1_3ix0l"]
+[ext_resource type="Script" path="res://ui/pause_screen.gd" id="1_oi3mn"]
+[ext_resource type="PackedScene" uid="uid://b64b3cgyw4prq" path="res://ui/button.tscn" id="2_jvnj2"]
+
+[node name="PauseScreen" type="Control"]
+process_mode = 2
+z_index = 2
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 360.0
+script = ExtResource("1_oi3mn")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0, 0, 0, 0.545098)
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 70.0
+offset_right = 450.0
+offset_bottom = 130.0
+theme_override_fonts/font = ExtResource("1_3ix0l")
+theme_override_font_sizes/font_size = 40
+text = "Game Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResumeButton" parent="ColorRect" instance=ExtResource("2_jvnj2")]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 200.0
+offset_right = 360.0
+offset_bottom = 235.0
+text = "Resume"
+
+[node name="ExitButton" parent="ColorRect" instance=ExtResource("2_jvnj2")]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 260.0
+offset_right = 360.0
+offset_bottom = 295.0
+text = "Exit"
+
+[connection signal="click_end" from="ColorRect/ResumeButton" to="." method="_on_resume_button_click_end"]
+[connection signal="click_end" from="ColorRect/ExitButton" to="." method="_on_exit_button_click_end"]

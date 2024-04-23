@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd64cmrt1r72s"
-path="res://.godot/imported/regeneration_icon.png-9a93875d90288479839e49a95ee3720e.ctex"
+uid="uid://68rqu0034as8"
+path="res://.godot/imported/lightning_bolt_icon.png-b2a49f4dc8c36bdc55cb644421bd56bc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/passives/regeneration_icon.png"
-dest_files=["res://.godot/imported/regeneration_icon.png-9a93875d90288479839e49a95ee3720e.ctex"]
+source_file="res://assets/textures/icons/lightning_bolt_icon.png"
+dest_files=["res://.godot/imported/lightning_bolt_icon.png-b2a49f4dc8c36bdc55cb644421bd56bc.ctex"]
 
 [params]
 

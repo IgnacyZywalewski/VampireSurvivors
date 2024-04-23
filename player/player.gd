@@ -30,6 +30,7 @@ var level = "res://world/world.tscn"
 @onready var level_up_panel = get_node("%LevelUpPanel")
 @onready var upgrade_options = get_node("%UpgradeOptions")
 @onready var item_option = preload("res://ui/item_option.tscn")
+@onready var pause_screen = get_node("%PauseScreen")
 
 #Weapons
 var fireball = preload("res://player/weapons/fireball.tscn")
@@ -56,7 +57,7 @@ var shooting_star_baseammo = 1
 var shooting_star_level = 0
 
 #BlackHole
-var black_hole_level = 0
+var black_hole_level = 1
 
 #LightningBolt
 var lightning_bolt_ammo = 0
@@ -65,11 +66,11 @@ var lightning_bolt_level = 0
 
 #Passives
 var shield = preload("res://player/passives/shield.tscn")
-var shield_level = 1
+var shield_level = 0
 var shield_amount = 0
 
 var regeneration = preload("res://player/passives/regeneration.tscn")
-var regeneration_level = 1
+var regeneration_level = 0
 var regeneration_amount = 0
 
 #Enemy
@@ -321,6 +322,11 @@ func _on_exit_button_click_end():
 func level_up():
 	level_label.text = str("Level: ", experience_level)
 	level_up_panel.visible = true
+	
+	var tween = level_up_panel.create_tween()
+	tween.tween_property(level_up_panel, "position", Vector2(220, 65), 0.5).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	tween.play()
+	
 	var options = 0
 	var options_max = 3
 	while options < options_max:
@@ -333,6 +339,17 @@ func upgrade_character(upgrade):
 	var option_children = upgrade_options.get_children()
 	for i in option_children:
 		i.queue_free()
+		
+	var tween = level_up_panel.create_tween()
+	tween.tween_property(level_up_panel, "position", Vector2(220, 380), 0.1).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	tween.play()
+	await tween.finished
+	
 	level_up_panel.visible = false
 	get_tree().paused = false
 	callculate_experience(0)
+
+
+func _on_pause_button_pressed():
+	get_tree().paused = true
+	pause_screen.visible = true

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpx5dbyrkcvq"
-path="res://.godot/imported/Lightning-bolt.png-6c8e537673521090167a1435ffc54f19.ctex"
+uid="uid://eo2sr6fkerrp"
+path="res://.godot/imported/shooting_star_icon.png-6049a2da44aaf8ee6042f8c5c93ccda0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/weapons/Lightning-bolt.png"
-dest_files=["res://.godot/imported/Lightning-bolt.png-6c8e537673521090167a1435ffc54f19.ctex"]
+source_file="res://assets/textures/icons/shooting_star_icon.png"
+dest_files=["res://.godot/imported/shooting_star_icon.png-6049a2da44aaf8ee6042f8c5c93ccda0.ctex"]
 
 [params]
 

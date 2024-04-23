@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ce03tmwn60rt2"
-path="res://.godot/imported/shield_icon.png-578162c60f0c73a115e290d1d26268cc.ctex"
+uid="uid://3ipfvu4u7381"
+path="res://.godot/imported/black_hole_icon.png-305639e89bc1fbcfa9beaa44b94c1edf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/passives/shield_icon.png"
-dest_files=["res://.godot/imported/shield_icon.png-578162c60f0c73a115e290d1d26268cc.ctex"]
+source_file="res://assets/textures/icons/black_hole_icon.png"
+dest_files=["res://.godot/imported/black_hole_icon.png-305639e89bc1fbcfa9beaa44b94c1edf.ctex"]
 
 [params]
 

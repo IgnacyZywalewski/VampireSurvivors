@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cie6obcah6ncj"
-path="res://.godot/imported/lightning_bolt_icon.png-1753b1b325415e3fc53122fcfdc9376a.ctex"
+uid="uid://ct2md1ovejmfw"
+path="res://.godot/imported/shield_icon.png-68a68edbc87afa37fcfbdab76d652987.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/weapons/lightning_bolt_icon.png"
-dest_files=["res://.godot/imported/lightning_bolt_icon.png-1753b1b325415e3fc53122fcfdc9376a.ctex"]
+source_file="res://assets/textures/icons/shield_icon.png"
+dest_files=["res://.godot/imported/shield_icon.png-68a68edbc87afa37fcfbdab76d652987.ctex"]
 
 [params]
 

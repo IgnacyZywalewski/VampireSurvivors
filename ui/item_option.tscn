@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dbdd01owjm1xd"]
 
 [ext_resource type="Script" path="res://ui/item_option.gd" id="1_7ec6g"]
-[ext_resource type="Texture2D" uid="uid://bee2j162qybrn" path="res://assets/textures/weapons/black_hole_icon.png" id="2_hqvtr"]
+[ext_resource type="Texture2D" uid="uid://3ipfvu4u7381" path="res://assets/textures/icons/black_hole_icon.png" id="2_jqcrp"]
 [ext_resource type="FontFile" uid="uid://d4a3w6dx63g5p" path="res://assets/fonts/Planes_ValMore.ttf" id="3_0mr8k"]
 
 [node name="ItemOption" type="ColorRect"]
@@ -18,7 +18,7 @@ offset_top = 2.0
 offset_right = 38.0
 offset_bottom = 37.0
 scale = Vector2(0.6, 0.6)
-texture = ExtResource("2_hqvtr")
+texture = ExtResource("2_jqcrp")
 
 [node name="NameLabel" type="Label" parent="."]
 layout_mode = 0
