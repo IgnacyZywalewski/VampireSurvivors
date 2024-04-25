@@ -49,12 +49,12 @@ var lightning_bolt = preload("res://player/weapons/lightning_bolt.tscn")
 #Fireball
 var fireball_ammo = 0
 var fireball_baseammo = 1
-var fireball_level = 0
+var fireball_level = 1
 
 #ShootingStar
 var shooting_star_ammo = 0
 var shooting_star_baseammo = 1
-var shooting_star_level = 0
+var shooting_star_level = 1
 
 #BlackHole
 var black_hole_level = 1
@@ -62,7 +62,7 @@ var black_hole_level = 1
 #LightningBolt
 var lightning_bolt_ammo = 0
 var lightning_bolt_baseammo = 1
-var lightning_bolt_level = 0
+var lightning_bolt_level = 1
 
 #Passives
 var shield = preload("res://player/passives/shield.tscn")
@@ -319,6 +319,11 @@ func _on_menu_button_click_end():
 func _on_exit_button_click_end():
 		get_tree().quit()
 
+func _on_pause_button_pressed():
+	get_tree().paused = true
+	pause_screen.visible = true
+
+
 func level_up():
 	level_label.text = str("Level: ", experience_level)
 	level_up_panel.visible = true
@@ -335,11 +340,11 @@ func level_up():
 		options += 1 
 	get_tree().paused = true
 
-func upgrade_character(upgrade):
+func upgrade_character(_upgrade):
 	var option_children = upgrade_options.get_children()
 	for i in option_children:
 		i.queue_free()
-		
+	
 	var tween = level_up_panel.create_tween()
 	tween.tween_property(level_up_panel, "position", Vector2(220, 380), 0.1).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	tween.play()
@@ -348,8 +353,3 @@ func upgrade_character(upgrade):
 	level_up_panel.visible = false
 	get_tree().paused = false
 	callculate_experience(0)
-
-
-func _on_pause_button_pressed():
-	get_tree().paused = true
-	pause_screen.visible = true

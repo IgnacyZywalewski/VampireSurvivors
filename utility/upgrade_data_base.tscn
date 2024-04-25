@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://du1jkxxp1n21"]
+
+[ext_resource type="Script" path="res://utility/upgrade_data_base.gd" id="1_h85mv"]
+
+[node name="UpgradeDataBase" type="Node2D"]
+script = ExtResource("1_h85mv")

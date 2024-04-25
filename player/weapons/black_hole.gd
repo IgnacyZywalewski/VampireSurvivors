@@ -17,7 +17,7 @@ func _ready():
 	animation.play("black_hole")
 	match level:
 		1:
-			damage = 10
+			damage = 0.5
 			cooldown_timer = 1.5
 			sprite.scale = Vector2(2,2)
 			collision_shape.scale = Vector2(2,2)
