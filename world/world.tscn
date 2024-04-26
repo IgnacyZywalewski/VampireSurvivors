@@ -12,7 +12,7 @@
 [sub_resource type="Resource" id="Resource_rehmj"]
 script = ExtResource("5_sd5ls")
 time_start = 0
-time_end = 10
+time_end = 60
 enemy = ExtResource("6_jty5m")
 enemy_num = 3
 enemy_spawn_delay = 0
@@ -22,7 +22,7 @@ script = ExtResource("5_sd5ls")
 time_start = 10
 time_end = 20
 enemy = ExtResource("6_jxc03")
-enemy_num = 1
+enemy_num = 0
 enemy_spawn_delay = 0
 
 [sub_resource type="Resource" id="Resource_gga0l"]
@@ -30,7 +30,7 @@ script = ExtResource("5_sd5ls")
 time_start = 20
 time_end = 30
 enemy = ExtResource("7_is0jj")
-enemy_num = 1
+enemy_num = 0
 enemy_spawn_delay = 0
 
 [sub_resource type="Resource" id="Resource_wbmnu"]
@@ -38,7 +38,7 @@ script = ExtResource("5_sd5ls")
 time_start = 30
 time_end = 40
 enemy = ExtResource("8_g7b6a")
-enemy_num = 1
+enemy_num = 0
 enemy_spawn_delay = 0
 
 [node name="World" type="Node2D"]

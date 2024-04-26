@@ -6,15 +6,16 @@ extends ColorRect
 @onready var item_icon = $ItemIcon
 
 var mouse_over = false
-var item = "fireball1"
+var item = null
 @onready var player = get_tree().get_first_node_in_group("player")
 
 signal selected_upgrade(upgrade)
 
 func _ready():
-	item_icon.size = Vector2(35, 35)
-	connect("selected_upgrade",Callable(player,"upgrade_charawcter"))
-
+	connect("selected_upgrade", Callable(player, "upgrade_character"))
+	
+	if item == null:
+		item = "food"
 	label_name.text = UpgradeDataBase.UPGRADES[item]["displayname"]
 	label_description.text = UpgradeDataBase.UPGRADES[item]["details"]
 	label_level.text = UpgradeDataBase.UPGRADES[item]["level"]

@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://utility/upgrade_data_base.gd" id="1_h85mv"]
 
-[node name="UpgradeDataBase" type="Node2D"]
+[node name="UpgradeDataBase" type="Node"]
 script = ExtResource("1_h85mv")

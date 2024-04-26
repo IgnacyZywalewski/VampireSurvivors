@@ -5,7 +5,6 @@
 [ext_resource type="FontFile" uid="uid://d4a3w6dx63g5p" path="res://assets/fonts/Planes_ValMore.ttf" id="3_0mr8k"]
 
 [node name="ItemOption" type="ColorRect"]
-process_mode = 2
 custom_minimum_size = Vector2(160, 50)
 offset_right = 180.0
 offset_bottom = 50.0

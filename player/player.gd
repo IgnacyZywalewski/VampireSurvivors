@@ -13,6 +13,7 @@ var time = 0
 
 var level = "res://world/world.tscn"
 
+#Player
 @onready var animation_tree = $Animation
 @onready var hit_flash_animation = $HitFlashAnimation
 @onready var idle_sprite = $Animation/IdleSprite
@@ -75,6 +76,13 @@ var regeneration_amount = 0
 
 #Enemy
 var enemy_close = []
+
+#Upgrades
+var collected_upgrades = []
+var upgrade_options_available = []
+var speed = 0
+var spell_cooldown = 0
+var aditional_attacks = 0
 
 func _ready():
 	attack()
@@ -336,14 +344,17 @@ func level_up():
 	var options_max = 3
 	while options < options_max:
 		var options_choice = item_option.instantiate()
+		options_choice.item = get_random_item()
 		upgrade_options.add_child(options_choice)
 		options += 1 
 	get_tree().paused = true
 
-func upgrade_character(_upgrade):
+func upgrade_character(upgrade):
 	var option_children = upgrade_options.get_children()
 	for i in option_children:
 		i.queue_free()
+	upgrade_options_available.clear()
+	collected_upgrades.append(upgrade)
 	
 	var tween = level_up_panel.create_tween()
 	tween.tween_property(level_up_panel, "position", Vector2(220, 380), 0.1).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
@@ -353,3 +364,27 @@ func upgrade_character(_upgrade):
 	level_up_panel.visible = false
 	get_tree().paused = false
 	callculate_experience(0)
+
+func get_random_item():
+	var database_list = []
+	for i in UpgradeDataBase.UPGRADES:
+		if i in collected_upgrades:
+			pass
+		elif i in upgrade_options_available:
+			pass
+		elif UpgradeDataBase.UPGRADES[i]["type"] == null:
+			pass
+		elif UpgradeDataBase.UPGRADES[i]["prerequesits"].size() > 0:
+			for j in UpgradeDataBase.UPGRADES[i]["prerequesits"]:
+				if not j in collected_upgrades:
+					pass
+				else:
+					database_list.append(i)
+		else :
+			database_list.append(i)
+	if database_list.size() > 0 :
+		var random_item = database_list.pick_random()
+		upgrade_options_available.append(random_item)
+		return random_item
+	else:
+		return null
