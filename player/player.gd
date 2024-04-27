@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
-@export var movement_speed = 80.0
+var movement_speed = 80.0
+@export var basic_movement_speed = 80
 @export var health = 100
 @export var max_health = 100
 var dead = false
@@ -83,8 +84,6 @@ var enemy_close = []
 #Upgrades
 var collected_upgrades = []
 var upgrade_options_available = []
-var speed = 0
-var spell_cooldown = 0
 var additional_attacks = 0
 
 func _ready():
@@ -99,25 +98,25 @@ func attack():
 	if shooting_star_level > 0 and shooting_star_timer.is_stopped():
 		shooting_star_timer.start()
 		
-	if black_hole_level > 0 and black_hole_attack == null:
-		black_hole_attack = black_hole.instantiate()
+	if black_hole_level > 0:
+		if black_hole_attack == null:
+			black_hole_attack = black_hole.instantiate()
 		black_hole_attack.level = black_hole_level
-		black_hole_attack.position = position
 		add_child(black_hole_attack)
 		
 	if lightning_bolt_level > 0 and lightning_bolt_timer.is_stopped():
 		lightning_bolt_timer.start()
 		
-	if shield_level > 0 and shield_passive == null:
-		shield_passive = shield.instantiate()
+	if shield_level > 0:
+		if shield_passive == null:
+			shield_passive = shield.instantiate()
 		shield_passive.level = shield_level
-		shield_passive.position = position
 		add_child(shield_passive)
 		
-	if regeneration_level > 0 and regeneration_passive == null:
-		regeneration_passive = regeneration.instantiate()
+	if regeneration_level > 0:
+		if regeneration_passive == null:
+			regeneration_passive = regeneration.instantiate()
 		regeneration_passive.level = regeneration_level
-		regeneration_passive.position = position
 		add_child(regeneration_passive)
 
 func _physics_process(_delta):
@@ -381,16 +380,19 @@ func upgrade_character(upgrade):
 			shooting_star_level = 1
 		"shooting_star_2":
 			shooting_star_level = 2
+			shooting_star_baseammo += 1
 		"shooting_star_3":
 			shooting_star_level = 3
+			shooting_star_baseammo += 1
 		"shooting_star_4":
 			shooting_star_level = 4
+			shooting_star_baseammo += 1
 		"shooting_star_5":
 			shooting_star_level = 5
+			shooting_star_baseammo += 1
 			
 		"lightning_bolt_1":
 			lightning_bolt_level = 1
-			lightning_bolt_baseammo += 1
 		"lightning_bolt_2":
 			lightning_bolt_level = 2
 			lightning_bolt_baseammo += 1
@@ -398,31 +400,41 @@ func upgrade_character(upgrade):
 			lightning_bolt_level = 3
 		"lightning_bolt_4":
 			lightning_bolt_level = 4
-			lightning_bolt_baseammo += 2
+			lightning_bolt_baseammo += 1
 		"lightning_bolt_5":
 			lightning_bolt_level = 5
-			lightning_bolt_baseammo += 3
+			lightning_bolt_baseammo += 1
 		
 		"shield_1":
 			shield_level = 1
-			shield_amount += 1
-		"shield_2","shield_3","shield_4","shield_5":
-			shield_amount += 1
+		"shield_2":
+			shield_level = 2
+		"shield_3":
+			shield_level = 3
+		"shield_4":
+			shield_level = 4
+		"shield_5":
+			shield_level = 5
 		
 		"regeneration_1":
 			regeneration_level = 1
-			regeneration_amount = 0.1
-		"regeneration_2", "regeneration_3", "regeneration_4", "regeneration_5":
-			regeneration_amount += 0.1
+		"regeneration_2":
+			regeneration_level = 2
+		"regeneration_3":
+			regeneration_level = 3
+		"regeneration_4":
+			regeneration_level = 4
+		"regeneration_5":
+			regeneration_level = 5
 			
 		"wings_1","wings_2","wings_3","wings_4","wings_5":
-			movement_speed += 0.1 * movement_speed
+			movement_speed += 0.1 * basic_movement_speed
 			
-		"ring1","ring2":
+		"ring_1","ring_2":
 			additional_attacks += 1
 			
 		"food":
-			health += 20
+			health += 10
 			health = clamp(health, 0, max_health)
 	
 	attack()

@@ -17,6 +17,7 @@ func _ready():
 	animation.play("black_hole")
 	match level:
 		1:
+			global_position = player.global_position
 			damage = 2
 			cooldown_timer = 1
 			sprite.scale = Vector2(2,2)

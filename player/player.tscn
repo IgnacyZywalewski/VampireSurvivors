@@ -305,7 +305,7 @@ wait_time = 2.0
 
 [node name="FireballAttackTimer" type="Timer" parent="Attack/FireballTimer"]
 unique_name_in_owner = true
-wait_time = 0.075
+wait_time = 0.2
 
 [node name="ShootingStarTimer" type="Timer" parent="Attack"]
 unique_name_in_owner = true
