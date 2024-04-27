@@ -55,24 +55,27 @@ var fireball_level = 1
 #ShootingStar
 var shooting_star_ammo = 0
 var shooting_star_baseammo = 1
-var shooting_star_level = 1
+var shooting_star_level = 0
 
 #BlackHole
-var black_hole_level = 1
+var black_hole_level = 0
+var black_hole_attack = null
 
 #LightningBolt
 var lightning_bolt_ammo = 0
 var lightning_bolt_baseammo = 1
-var lightning_bolt_level = 1
+var lightning_bolt_level = 0
 
 #Passives
 var shield = preload("res://player/passives/shield.tscn")
 var shield_level = 0
 var shield_amount = 0
+var shield_passive = null
 
 var regeneration = preload("res://player/passives/regeneration.tscn")
 var regeneration_level = 0
 var regeneration_amount = 0
+var regeneration_passive = null
 
 #Enemy
 var enemy_close = []
@@ -82,7 +85,7 @@ var collected_upgrades = []
 var upgrade_options_available = []
 var speed = 0
 var spell_cooldown = 0
-var aditional_attacks = 0
+var additional_attacks = 0
 
 func _ready():
 	attack()
@@ -96,33 +99,30 @@ func attack():
 	if shooting_star_level > 0 and shooting_star_timer.is_stopped():
 		shooting_star_timer.start()
 		
-	if black_hole_level > 0:
-		var black_hole_attack = black_hole.instantiate()
+	if black_hole_level > 0 and black_hole_attack == null:
+		black_hole_attack = black_hole.instantiate()
 		black_hole_attack.level = black_hole_level
-		black_hole_attack.global_position = global_position
+		black_hole_attack.position = position
 		add_child(black_hole_attack)
 		
 	if lightning_bolt_level > 0 and lightning_bolt_timer.is_stopped():
 		lightning_bolt_timer.start()
 		
-	if shield_level > 0:
-		var shield_passive = shield.instantiate()
+	if shield_level > 0 and shield_passive == null:
+		shield_passive = shield.instantiate()
 		shield_passive.level = shield_level
-		shield_passive.position = global_position
-		shield_amount = shield_passive.shield_amount
+		shield_passive.position = position
 		add_child(shield_passive)
 		
-	if regeneration_level > 0:
-		var regeneration_passive = regeneration.instantiate()
+	if regeneration_level > 0 and regeneration_passive == null:
+		regeneration_passive = regeneration.instantiate()
 		regeneration_passive.level = regeneration_level
-		regeneration_passive.position = global_position
-		regeneration_amount = regeneration_passive.regeneration_amount
+		regeneration_passive.position = position
 		add_child(regeneration_passive)
 
 func _physics_process(_delta):
 	if dead == false:
 		movement()
-		#print(health)
 
 func movement():
 	var x_mov = Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -181,7 +181,7 @@ func _on_animation_animation_finished(anim_name):
 
 
 func _on_fireball_timer_timeout():
-	fireball_ammo += fireball_baseammo
+	fireball_ammo += fireball_baseammo + additional_attacks
 	fireball_attack_timer.start()
 
 func _on_fireball_attack_timer_timeout():
@@ -199,7 +199,7 @@ func _on_fireball_attack_timer_timeout():
 
 
 func _on_shooting_star_timer_timeout():
-	shooting_star_ammo += shooting_star_baseammo
+	shooting_star_ammo += shooting_star_baseammo + additional_attacks
 	shooting_star_attack_timer.start()
 
 func _on_shooting_star_attack_timer_timeout():
@@ -217,7 +217,7 @@ func _on_shooting_star_attack_timer_timeout():
 
 
 func _on_lightning_bolt_timer_timeout():
-	lightning_bolt_ammo += lightning_bolt_baseammo
+	lightning_bolt_ammo += lightning_bolt_baseammo + additional_attacks
 	lightning_bolt_attack_timer.start()
 
 func _on_lightning_bolt_attack_timer_timeout():
@@ -350,6 +350,82 @@ func level_up():
 	get_tree().paused = true
 
 func upgrade_character(upgrade):
+	match upgrade:
+		#"fireball_1":
+			#fireball_level = 1
+			#fireball_baseammo += 1
+		"fireball_2":
+			fireball_level = 2
+			fireball_baseammo += 1
+		"fireball_3":
+			fireball_level = 3
+		"fireball_4":
+			fireball_level = 4
+			fireball_baseammo += 2
+		"fireball_5":
+			fireball_level = 5
+			fireball_baseammo += 3
+			
+		"black_hole_1":
+			black_hole_level = 1
+		"black_hole_2":
+			black_hole_level = 2
+		"black_hole_3":
+			black_hole_level = 3
+		"black_hole_4":
+			black_hole_level = 4
+		"black_hole_5":
+			black_hole_level = 5
+			
+		"shooting_star_1":
+			shooting_star_level = 1
+		"shooting_star_2":
+			shooting_star_level = 2
+		"shooting_star_3":
+			shooting_star_level = 3
+		"shooting_star_4":
+			shooting_star_level = 4
+		"shooting_star_5":
+			shooting_star_level = 5
+			
+		"lightning_bolt_1":
+			lightning_bolt_level = 1
+			lightning_bolt_baseammo += 1
+		"lightning_bolt_2":
+			lightning_bolt_level = 2
+			lightning_bolt_baseammo += 1
+		"lightning_bolt_3":
+			lightning_bolt_level = 3
+		"lightning_bolt_4":
+			lightning_bolt_level = 4
+			lightning_bolt_baseammo += 2
+		"lightning_bolt_5":
+			lightning_bolt_level = 5
+			lightning_bolt_baseammo += 3
+		
+		"shield_1":
+			shield_level = 1
+			shield_amount += 1
+		"shield_2","shield_3","shield_4","shield_5":
+			shield_amount += 1
+		
+		"regeneration_1":
+			regeneration_level = 1
+			regeneration_amount = 0.1
+		"regeneration_2", "regeneration_3", "regeneration_4", "regeneration_5":
+			regeneration_amount += 0.1
+			
+		"wings_1","wings_2","wings_3","wings_4","wings_5":
+			movement_speed += 0.1 * movement_speed
+			
+		"ring1","ring2":
+			additional_attacks += 1
+			
+		"food":
+			health += 20
+			health = clamp(health, 0, max_health)
+	
+	attack()
 	var option_children = upgrade_options.get_children()
 	for i in option_children:
 		i.queue_free()

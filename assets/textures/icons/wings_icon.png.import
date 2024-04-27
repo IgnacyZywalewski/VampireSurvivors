@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2nui3e6uvbqr"
-path="res://.godot/imported/movement_speed_icon.jpg-fe2ce775d047bc4e2d89ab377df411cd.ctex"
+uid="uid://fjywo7yggddh"
+path="res://.godot/imported/wings_icon.png-14f9abadae00e0afbd89813309a7edca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/icons/movement_speed_icon.jpg"
-dest_files=["res://.godot/imported/movement_speed_icon.jpg-fe2ce775d047bc4e2d89ab377df411cd.ctex"]
+source_file="res://assets/textures/icons/wings_icon.png"
+dest_files=["res://.godot/imported/wings_icon.png-14f9abadae00e0afbd89813309a7edca.ctex"]
 
 [params]
 

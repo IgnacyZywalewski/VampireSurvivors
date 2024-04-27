@@ -22,11 +22,12 @@ texture = ExtResource("2_jqcrp")
 
 [node name="NameLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 33.0
+offset_left = 29.0
 offset_top = 5.0
-offset_right = 123.0
+offset_right = 119.0
 offset_bottom = 21.0
 theme_override_fonts/font = ExtResource("3_0mr8k")
+theme_override_font_sizes/font_size = 13
 text = "Name"
 
 [node name="LevelLabel" type="Label" parent="."]
