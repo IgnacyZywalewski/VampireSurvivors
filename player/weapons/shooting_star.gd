@@ -4,6 +4,7 @@ var level = 1
 var bounce_num = 5
 var speed = 300
 var damage = 2
+
 var hurt_box_type = "hit_once"
 var knockback_amount = 100
 
@@ -21,8 +22,36 @@ func _ready():
 	match level:
 		1:
 			bounce_num = 5
-			speed = 300
+			speed = 200
 			damage = 2
+		2:
+			bounce_num = 5
+			speed = 300
+			damage = 2.5
+		3:
+			bounce_num = 7
+			speed = 300
+			damage = 3
+		4:
+			bounce_num = 7
+			speed = 300
+			damage = 3
+		5:
+			bounce_num = 7
+			speed = 350
+			damage = 3.5
+		6:
+			bounce_num = 9
+			speed = 350
+			damage = 4
+		7:
+			bounce_num = 9
+			speed = 350
+			damage = 4
+		8:
+			bounce_num = 11
+			speed = 350
+			damage = 4
 
 func _physics_process(delta):
 	position += speed * delta * angle

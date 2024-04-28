@@ -22,6 +22,8 @@ var level = "res://world/world.tscn"
 @onready var death_sprite = $Animation/DeathSprite
 @onready var collision_shape = $CollisionShape2D
 
+@onready var grab_area_collision = $GrabArea/CollisionShape2D
+
 #Gui
 @onready var experience_bar = get_node("%ExperienceBar")
 @onready var level_label = get_node("%LevelLabel")
@@ -43,8 +45,10 @@ var lightning_bolt = preload("res://player/weapons/lightning_bolt.tscn")
 #Weapons nodes
 @onready var fireball_timer = get_node("%FireballTimer")
 @onready var fireball_attack_timer = get_node("%FireballAttackTimer")
+
 @onready var shooting_star_timer = get_node("%ShootingStarTimer")
 @onready var shooting_star_attack_timer = get_node("%ShootingStarAttackTimer")
+
 @onready var lightning_bolt_timer = get_node("%LightningBoltTimer")
 @onready var lightning_bolt_attack_timer = get_node("%LightningBoltAttackTimer")
 
@@ -316,22 +320,35 @@ func change_time(argtime = 0):
 	time_label.text = str(get_m, ":", get_s)
 
 
-func _on_replay_button_click_end():
+#func _on_replay_button_click_end():
+	#dead = false
+	#get_tree().paused = false
+	#get_tree().change_scene_to_file(level)
+#
+#func _on_menu_button_click_end():
+	#dead = false
+	#get_tree().paused = false
+	#get_tree().change_scene_to_file("res://ui/menu.tscn")
+#
+#func _on_exit_button_click_end():
+		#get_tree().quit()
+
+func _on_replay_button_pressed():
 	dead = false
 	get_tree().paused = false
 	get_tree().change_scene_to_file(level)
 
-func _on_menu_button_click_end():
+func _on_menu_button_pressed():
 	dead = false
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://ui/menu.tscn")
 
-func _on_exit_button_click_end():
-		get_tree().quit()
-
 func _on_pause_button_pressed():
 	get_tree().paused = true
 	pause_screen.visible = true
+
+func _on_exit_button_pressed():
+	get_tree().quit()
 
 
 func level_up():
@@ -353,9 +370,6 @@ func level_up():
 
 func upgrade_character(upgrade):
 	match upgrade:
-		#"fireball_1":
-			#fireball_level = 1
-			#fireball_baseammo += 1
 		"fireball_2":
 			fireball_level = 2
 			fireball_baseammo += 1
@@ -363,10 +377,16 @@ func upgrade_character(upgrade):
 			fireball_level = 3
 		"fireball_4":
 			fireball_level = 4
-			fireball_baseammo += 2
+			fireball_baseammo += 1
 		"fireball_5":
 			fireball_level = 5
-			fireball_baseammo += 3
+		"fireball_6":
+			fireball_level = 6
+			fireball_baseammo += 1
+		"fireball_7":
+			fireball_level = 7
+		"fireball_8":
+			fireball_level = 8
 			
 		"black_hole_1":
 			black_hole_level = 1
@@ -378,21 +398,31 @@ func upgrade_character(upgrade):
 			black_hole_level = 4
 		"black_hole_5":
 			black_hole_level = 5
+		"black_hole_6":
+			black_hole_level = 6
+		"black_hole_7":
+			black_hole_level = 7
+		"black_hole_8":
+			black_hole_level = 8
 			
 		"shooting_star_1":
 			shooting_star_level = 1
 		"shooting_star_2":
-			shooting_star_level = 2
-			shooting_star_baseammo += 1
+			shooting_star_level = 2	
 		"shooting_star_3":
 			shooting_star_level = 3
-			shooting_star_baseammo += 1
 		"shooting_star_4":
 			shooting_star_level = 4
 			shooting_star_baseammo += 1
 		"shooting_star_5":
 			shooting_star_level = 5
+		"shooting_star_6":
+			shooting_star_level = 6
+		"shooting_star_7":
+			shooting_star_level = 7
 			shooting_star_baseammo += 1
+		"shooting_star_8":
+			shooting_star_level = 8
 			
 		"lightning_bolt_1":
 			lightning_bolt_level = 1
@@ -403,9 +433,17 @@ func upgrade_character(upgrade):
 			lightning_bolt_level = 3
 		"lightning_bolt_4":
 			lightning_bolt_level = 4
-			lightning_bolt_baseammo += 1
 		"lightning_bolt_5":
 			lightning_bolt_level = 5
+			lightning_bolt_baseammo += 1
+		"lightning_bolt_6":
+			lightning_bolt_level = 6
+			lightning_bolt_baseammo += 1
+		"lightning_bolt_7":
+			lightning_bolt_level = 7
+			lightning_bolt_baseammo += 1
+		"lightning_bolt_8":
+			lightning_bolt_level = 8
 			lightning_bolt_baseammo += 1
 		
 		"shield_1":
@@ -436,6 +474,13 @@ func upgrade_character(upgrade):
 		"ring_1","ring_2":
 			additional_attacks += 1
 			
+		"magnet_1":
+			grab_area_collision.shape.radius = 30.0
+		"magnet_2","magnet_3","magnet_4":
+			grab_area_collision.shape.radius += 10
+		"magnet_5":
+			grab_area_collision.shape.radius += 20
+
 		"food":
 			health += 10
 			health = clamp(health, 0, max_health)

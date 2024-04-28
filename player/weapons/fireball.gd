@@ -4,6 +4,7 @@ var level = 1
 var hp = 1
 var speed = 100
 var damage = 1
+
 var hurt_box_type = "hit_once"
 var knockback_amount = 100
 
@@ -22,8 +23,35 @@ func _ready():
 	match level:
 		1:
 			hp = 1
-			speed = 100
 			damage = 1
+			knockback_amount = 100
+		2:
+			hp = 1
+			damage = 1
+			knockback_amount = 100
+		3:
+			hp = 2
+			damage = 1
+			knockback_amount = 100
+		4:
+			hp = 2
+			damage = 1
+			knockback_amount = 100
+		5:
+			hp = 2
+			damage = 2
+			knockback_amount = 100
+		6:
+			hp = 2
+			damage = 2
+			knockback_amount = 100
+		7:
+			hp = 3
+			damage = 2
+			knockback_amount = 100
+		8:
+			hp = 3
+			damage = 5
 			knockback_amount = 100
 
 func _physics_process(delta):

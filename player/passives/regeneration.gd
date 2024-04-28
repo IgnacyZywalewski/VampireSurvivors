@@ -9,23 +9,19 @@ var regeneration_amount = 0
 
 func _ready():
 	animation.play("regeneration")
+	cooldown_timer.wait_time = 1
+	global_position = player.global_position
 	match level:
 		1:
-			global_position = player.global_position
-			regeneration_amount = 0.1
-			cooldown_timer.wait_time = 1
-		2:
 			regeneration_amount = 0.2
-			cooldown_timer.wait_time = 0.9
-		3:
-			regeneration_amount = 0.3
-			cooldown_timer.wait_time = 0.8
-		4:
+		2:
 			regeneration_amount = 0.4
-			cooldown_timer.wait_time = 0.7
+		3:
+			regeneration_amount = 0.6
+		4:
+			regeneration_amount = 0.8
 		5:
-			regeneration_amount = 0.5
-			cooldown_timer.wait_time = 0.6
+			regeneration_amount = 1
 
 
 func _on_cooltime_timer_timeout():

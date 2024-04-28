@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cr3v2l88uspnm"
-path="res://.godot/imported/wings_icon.png-14f9abadae00e0afbd89813309a7edca.ctex"
+uid="uid://ctn7qkdwlwpoy"
+path="res://.godot/imported/magnet_icon.png-68c5e4d864cf401ed3329ea6dbb2c98a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/icons/wings_icon.png"
-dest_files=["res://.godot/imported/wings_icon.png-14f9abadae00e0afbd89813309a7edca.ctex"]
+source_file="res://assets/textures/icons/magnet_icon.png"
+dest_files=["res://.godot/imported/magnet_icon.png-68c5e4d864cf401ed3329ea6dbb2c98a.ctex"]
 
 [params]
 

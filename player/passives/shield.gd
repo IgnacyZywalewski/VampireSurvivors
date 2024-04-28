@@ -8,15 +8,15 @@ var shield_amount = 0
 
 func _ready():
 	animation.play("shield")
+	global_position = player.global_position
 	match level:
 		1:
-			global_position = player.global_position
 			shield_amount = 1
 		2:
-			shield_amount = 1.5
-		3:
 			shield_amount = 2
-		4:
-			shield_amount = 2.5
-		5:
+		3:
 			shield_amount = 3
+		4:
+			shield_amount = 4
+		5:
+			shield_amount = 5
