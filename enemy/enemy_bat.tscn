@@ -106,7 +106,6 @@ motion_mode = 1
 script = ExtResource("1_obvar")
 hp = 1.0
 enemy_hit_cooldown = 0.7
-enemy_difficulty = 2
 
 [node name="Sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_yfpd5")

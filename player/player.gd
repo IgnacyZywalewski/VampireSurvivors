@@ -98,24 +98,27 @@ func attack():
 	if shooting_star_level > 0 and shooting_star_timer.is_stopped():
 		shooting_star_timer.start()
 		
-	if black_hole_level > 0:
-		if black_hole_attack == null:
-			black_hole_attack = black_hole.instantiate()
-		black_hole_attack.level = black_hole_level
-		add_child(black_hole_attack)
-		
 	if lightning_bolt_level > 0 and lightning_bolt_timer.is_stopped():
 		lightning_bolt_timer.start()
-		
+	
+	if black_hole_level > 0:
+		if black_hole_attack != null:
+			black_hole_attack.queue_free()
+		black_hole_attack = black_hole.instantiate()
+		black_hole_attack.level = black_hole_level
+		add_child(black_hole_attack)
+	
 	if shield_level > 0:
-		if shield_passive == null:
-			shield_passive = shield.instantiate()
+		if shield_passive != null:
+			shield_passive.queue_free()
+		shield_passive = shield.instantiate()
 		shield_passive.level = shield_level
 		add_child(shield_passive)
 		
 	if regeneration_level > 0:
-		if regeneration_passive == null:
-			regeneration_passive = regeneration.instantiate()
+		if regeneration_passive != null:
+			regeneration_passive.queue_free()
+		regeneration_passive = regeneration.instantiate()
 		regeneration_passive.level = regeneration_level
 		add_child(regeneration_passive)
 

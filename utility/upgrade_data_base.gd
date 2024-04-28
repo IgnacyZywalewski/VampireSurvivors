@@ -16,7 +16,7 @@ const UPGRADES = {
 		"displayname": "Fireball",
 		"details": "Text",
 		"level": "Level: 2",
-		"prerequesits": ["fireball_1"],
+		"prerequesits": [],
 		"type": "weapon"
 	},
 	"fireball_3": {
@@ -81,7 +81,7 @@ const UPGRADES = {
 		"displayname": "Black Hole",
 		"details": "Text",
 		"level": "Level: 5",
-		"prerequesits": ["black_hole_3"],
+		"prerequesits": ["black_hole_4"],
 		"type": "weapon"
 	},
 	
