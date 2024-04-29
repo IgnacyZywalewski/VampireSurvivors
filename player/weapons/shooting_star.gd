@@ -23,35 +23,35 @@ func _ready():
 		1:
 			bounce_num = 5
 			speed = 200
-			damage = 2
+			damage = 1
 		2:
 			bounce_num = 5
 			speed = 300
-			damage = 2.5
+			damage = 1.5
 		3:
 			bounce_num = 7
 			speed = 300
-			damage = 3
+			damage = 2
 		4:
 			bounce_num = 7
 			speed = 300
-			damage = 3
+			damage = 2
 		5:
 			bounce_num = 7
 			speed = 350
-			damage = 3.5
+			damage = 2.5
 		6:
 			bounce_num = 9
 			speed = 350
-			damage = 4
+			damage = 3
 		7:
 			bounce_num = 9
 			speed = 350
-			damage = 4
+			damage = 3
 		8:
 			bounce_num = 11
 			speed = 350
-			damage = 4
+			damage = 3.5
 
 func _physics_process(delta):
 	position += speed * delta * angle

@@ -480,7 +480,7 @@ func upgrade_character(upgrade):
 			grab_area_collision.shape.radius += 10
 		"magnet_5":
 			grab_area_collision.shape.radius += 20
-
+		
 		"food":
 			health += 10
 			health = clamp(health, 0, max_health)

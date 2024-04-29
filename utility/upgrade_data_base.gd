@@ -184,7 +184,7 @@ const UPGRADES = {
 	"shooting_star_8": {
 		"icon": ICON_PATH + "shooting_star_icon.png",
 		"displayname": "Shooting Star",
-		"details": "Number of bounces up by 2",
+		"details": "Base Damage up by 0.5\nNumber of bounces up by 2",
 		"level": "Level: 8",
 		"prerequesits": ["shooting_star_7"],
 		"type": "weapon"

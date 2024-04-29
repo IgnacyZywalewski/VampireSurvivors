@@ -16,6 +16,7 @@ func _ready():
 	
 	if item == null:
 		item = "food"
+		
 	label_name.text = UpgradeDataBase.UPGRADES[item]["displayname"]
 	label_description.text = UpgradeDataBase.UPGRADES[item]["details"]
 	label_level.text = UpgradeDataBase.UPGRADES[item]["level"]
