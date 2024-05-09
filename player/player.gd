@@ -35,6 +35,9 @@ var level = "res://world/world.tscn"
 @onready var upgrade_options = get_node("%UpgradeOptions")
 @onready var item_option = preload("res://ui/item_option.tscn")
 @onready var pause_screen = get_node("%PauseScreen")
+@onready var collected_weapons = get_node("%CollectedWeapons")
+@onready var collected_passives = get_node("%CollectedPassives")
+@onready var item_container = preload("res://ui/item_container.tscn")
 
 #Weapons
 var fireball = preload("res://player/weapons/fireball.tscn")
@@ -320,19 +323,6 @@ func change_time(argtime = 0):
 	time_label.text = str(get_m, ":", get_s)
 
 
-#func _on_replay_button_click_end():
-	#dead = false
-	#get_tree().paused = false
-	#get_tree().change_scene_to_file(level)
-#
-#func _on_menu_button_click_end():
-	#dead = false
-	#get_tree().paused = false
-	#get_tree().change_scene_to_file("res://ui/menu.tscn")
-#
-#func _on_exit_button_click_end():
-		#get_tree().quit()
-
 func _on_replay_button_pressed():
 	dead = false
 	get_tree().paused = false
@@ -485,6 +475,7 @@ func upgrade_character(upgrade):
 			health += 10
 			health = clamp(health, 0, max_health)
 	
+	adjust_ui_collection(upgrade)
 	attack()
 	var option_children = upgrade_options.get_children()
 	for i in option_children:
@@ -524,3 +515,19 @@ func get_random_item():
 		return random_item
 	else:
 		return null
+
+func adjust_ui_collection(upgrade):
+	var get_upgraded_displayname = UpgradeDataBase.UPGRADES[upgrade]["displayname"]
+	var get_type = UpgradeDataBase.UPGRADES[upgrade]["type"]
+	if get_type != "item":
+		var get_collected_displaynames = []
+		for i in collected_upgrades:
+			get_collected_displaynames.append(UpgradeDataBase.UPGRADES[i]["displayname"])
+		if not get_upgraded_displayname in get_collected_displaynames:
+			var new_item = item_container.instantiate()
+			new_item.upgrade = upgrade
+			match get_type:
+				"weapon":
+					collected_weapons.add_child(new_item)
+				"passive":
+					collected_passives.add_child(new_item)

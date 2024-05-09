@@ -442,6 +442,6 @@ const UPGRADES = {
 		"details": "Restores 10 health",
 		"level": "N/A",
 		"prerequesits": [],
-		"type": "passive"
+		"type": "item"
 	}
 }
