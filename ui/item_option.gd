@@ -12,7 +12,7 @@ var item = null
 signal selected_upgrade(upgrade)
 
 func _ready():
-	connect("selected_upgrade", Callable(player, "upgrade_character"))
+	connect("selected_upgrade", Callable(player, "upgrade_process"))
 	
 	if item == null:
 		item = "food"

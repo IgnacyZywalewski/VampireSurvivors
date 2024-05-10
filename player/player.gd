@@ -93,13 +93,9 @@ var collected_upgrades = []
 var upgrade_options_available = []
 var additional_attacks = 0
 
-#bex tego nie dziala xD
-var firt_upgrade = false
 
 func _ready():
-	upgrade_character("fireball_1")
-	firt_upgrade = true
-	
+	upgrade_charackter("fireball_1")
 	attack()
 	set_experience_bar(experience, callculate_experience_cap())
 	health_bar.init_health(health)
@@ -318,16 +314,47 @@ func set_experience_bar(set_value = 1, set_max_value = 100):
 	experience_bar.max_value = set_max_value
 
 
-func change_time(argtime = 0):
-	time = argtime
-	var get_s = time % 60
-	var get_m = int(time/60)
-	if get_s < 10:
-		get_s = str(0, get_s)
-	if get_m < 10:
-		get_m = str(0, get_m)
-	time_label.text = str(get_m, ":", get_s)
+func get_random_item():
+	var database_list = []
+	for i in UpgradeDataBase.UPGRADES:
+		if i in collected_upgrades:
+			pass
+		elif i in upgrade_options_available:
+			pass
+		elif UpgradeDataBase.UPGRADES[i]["type"] == "item":
+			pass
+		elif UpgradeDataBase.UPGRADES[i]["prerequesits"].size() > 0:
+			var to_add = true
+			for j in UpgradeDataBase.UPGRADES[i]["prerequesits"]:
+				if not j in collected_upgrades:
+					to_add = false
+			if to_add:
+				database_list.append(i)
+		else :
+			database_list.append(i)
+			
+	if database_list.size() > 0:
+		var random_item = database_list.pick_random()
+		upgrade_options_available.append(random_item)
+		return random_item
+	else:
+		return null
 
+func adjust_ui_collection(upgrade):
+	var get_upgraded_displayname = UpgradeDataBase.UPGRADES[upgrade]["displayname"]
+	var get_type = UpgradeDataBase.UPGRADES[upgrade]["type"]
+	if get_type != "item":
+		var get_collected_displaynames = []
+		for i in collected_upgrades:
+			get_collected_displaynames.append(UpgradeDataBase.UPGRADES[i]["displayname"])
+		if not get_upgraded_displayname in get_collected_displaynames:
+			var new_item = item_container.instantiate()
+			new_item.upgrade = upgrade
+			match get_type:
+				"weapon":
+					collected_weapons.add_child(new_item)
+				"passive":
+					collected_passives.add_child(new_item)
 
 func level_up():
 	level_label.text = str("Level: ", experience_level)
@@ -346,7 +373,7 @@ func level_up():
 		options += 1 
 	get_tree().paused = true
 
-func upgrade_character(upgrade):
+func upgrade_charackter(upgrade):
 	match upgrade:
 		"fireball_1":
 			fireball_level = 1
@@ -470,64 +497,37 @@ func upgrade_character(upgrade):
 
 	adjust_ui_collection(upgrade)
 	collected_upgrades.append(upgrade)
+	attack()
+
+func level_up_panel_hide():
+	var option_children = upgrade_options.get_children()
+	for i in option_children:
+		i.queue_free()
+	upgrade_options_available.clear()
 	
-	if firt_upgrade:
-		attack()
-		var option_children = upgrade_options.get_children()
-		for i in option_children:
-			i.queue_free()
-		upgrade_options_available.clear()
-		
-		var tween = level_up_panel.create_tween()
-		tween.tween_property(level_up_panel, "position", Vector2(220, 380), 0.1).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
-		tween.play()
-		await tween.finished
-		
-		level_up_panel.visible = false
-		get_tree().paused = false
-		callculate_experience(0)
+	var tween = level_up_panel.create_tween()
+	tween.tween_property(level_up_panel, "position", Vector2(220, 380), 0.1).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	tween.play()
+	await tween.finished
+	
+	level_up_panel.visible = false
+	get_tree().paused = false
+	callculate_experience(0)
 
-func get_random_item():
-	var database_list = []
-	for i in UpgradeDataBase.UPGRADES:
-		if i in collected_upgrades:
-			pass
-		elif i in upgrade_options_available:
-			pass
-		elif UpgradeDataBase.UPGRADES[i]["type"] == "item":
-			pass
-		elif UpgradeDataBase.UPGRADES[i]["prerequesits"].size() > 0:
-			var to_add = true
-			for j in UpgradeDataBase.UPGRADES[i]["prerequesits"]:
-				if not j in collected_upgrades:
-					to_add = false
-			if to_add:
-				database_list.append(i)
-		else :
-			database_list.append(i)
-			
-	if database_list.size() > 0:
-		var random_item = database_list.pick_random()
-		upgrade_options_available.append(random_item)
-		return random_item
-	else:
-		return null
+func upgrade_process(upgrade):
+	upgrade_charackter(upgrade)
+	level_up_panel_hide()
 
-func adjust_ui_collection(upgrade):
-	var get_upgraded_displayname = UpgradeDataBase.UPGRADES[upgrade]["displayname"]
-	var get_type = UpgradeDataBase.UPGRADES[upgrade]["type"]
-	if get_type != "item":
-		var get_collected_displaynames = []
-		for i in collected_upgrades:
-			get_collected_displaynames.append(UpgradeDataBase.UPGRADES[i]["displayname"])
-		if not get_upgraded_displayname in get_collected_displaynames:
-			var new_item = item_container.instantiate()
-			new_item.upgrade = upgrade
-			match get_type:
-				"weapon":
-					collected_weapons.add_child(new_item)
-				"passive":
-					collected_passives.add_child(new_item)
+
+func change_time(argtime = 0):
+	time = argtime
+	var get_s = time % 60
+	var get_m = int(time/60)
+	if get_s < 10:
+		get_s = str(0, get_s)
+	if get_m < 10:
+		get_m = str(0, get_m)
+	time_label.text = str(get_m, ":", get_s)
 
 
 func _on_replay_button_click_end():
