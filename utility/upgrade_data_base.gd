@@ -1,14 +1,21 @@
 extends Node
 
-
 const ICON_PATH = "res://assets/textures/icons/"
 const UPGRADES = {
+	"fireball_1": {
+		"icon": ICON_PATH + "fireball_icon.png",
+		"displayname": "Fireball",
+		"details": "Fires at the nearest enemy",
+		"level": "Level: 1",
+		"prerequesits": [],
+		"type": "weapon"
+	},
 	"fireball_2": {
 		"icon": ICON_PATH + "fireball_icon.png",
 		"displayname": "Fireball",
 		"details": "Fires 1 more projectile",
 		"level": "Level: 2",
-		"prerequesits": [],
+		"prerequesits": ["fireball_1"],
 		"type": "weapon"
 	},
 	"fireball_3": {

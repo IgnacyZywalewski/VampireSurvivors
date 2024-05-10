@@ -523,9 +523,9 @@ offset_bottom = 22.0
 [connection signal="body_exited" from="EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_exited"]
 [connection signal="area_entered" from="GrabArea" to="." method="_on_grab_area_area_entered"]
 [connection signal="area_entered" from="CollectArea" to="." method="_on_collect_area_area_entered"]
-[connection signal="pressed" from="GUILayer/GUI/DeathPanel/ReplayButton" to="." method="_on_replay_button_pressed"]
-[connection signal="pressed" from="GUILayer/GUI/DeathPanel/MenuButton" to="." method="_on_menu_button_pressed"]
-[connection signal="pressed" from="GUILayer/GUI/DeathPanel/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="click_end" from="GUILayer/GUI/DeathPanel/ReplayButton" to="." method="_on_replay_button_click_end"]
+[connection signal="click_end" from="GUILayer/GUI/DeathPanel/MenuButton" to="." method="_on_menu_button_click_end"]
+[connection signal="click_end" from="GUILayer/GUI/DeathPanel/ExitButton" to="." method="_on_exit_button_click_end"]
 [connection signal="pressed" from="GUILayer/GUI/PauseButton" to="." method="_on_pause_button_pressed"]
 
 [editable path="Hurtbox"]

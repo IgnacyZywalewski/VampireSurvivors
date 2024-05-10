@@ -57,8 +57,8 @@ var lightning_bolt = preload("res://player/weapons/lightning_bolt.tscn")
 
 #Fireball
 var fireball_ammo = 0
-var fireball_baseammo = 1
-var fireball_level = 1
+var fireball_baseammo = 0
+var fireball_level = 0
 
 #ShootingStar
 var shooting_star_ammo = 0
@@ -94,6 +94,7 @@ var upgrade_options_available = []
 var additional_attacks = 0
 
 func _ready():
+	#upgrade_character("fireball_1")
 	attack()
 	set_experience_bar(experience, callculate_experience_cap())
 	health_bar.init_health(health)
@@ -323,24 +324,6 @@ func change_time(argtime = 0):
 	time_label.text = str(get_m, ":", get_s)
 
 
-func _on_replay_button_pressed():
-	dead = false
-	get_tree().paused = false
-	get_tree().change_scene_to_file(level)
-
-func _on_menu_button_pressed():
-	dead = false
-	get_tree().paused = false
-	get_tree().change_scene_to_file("res://ui/menu.tscn")
-
-func _on_pause_button_pressed():
-	get_tree().paused = true
-	pause_screen.visible = true
-
-func _on_exit_button_pressed():
-	get_tree().quit()
-
-
 func level_up():
 	level_label.text = str("Level: ", experience_level)
 	level_up_panel.visible = true
@@ -360,6 +343,9 @@ func level_up():
 
 func upgrade_character(upgrade):
 	match upgrade:
+		"fireball_1":
+			fireball_level = 1
+			fireball_baseammo += 1
 		"fireball_2":
 			fireball_level = 2
 			fireball_baseammo += 1
@@ -499,14 +485,15 @@ func get_random_item():
 			pass
 		elif i in upgrade_options_available:
 			pass
-		elif UpgradeDataBase.UPGRADES[i]["type"] == null:
+		elif UpgradeDataBase.UPGRADES[i]["type"] == "item":
 			pass
 		elif UpgradeDataBase.UPGRADES[i]["prerequesits"].size() > 0:
+			var to_add = true
 			for j in UpgradeDataBase.UPGRADES[i]["prerequesits"]:
 				if not j in collected_upgrades:
-					pass
-				else:
-					database_list.append(i)
+					to_add = false
+			if to_add:
+				database_list.append(i)
 		else :
 			database_list.append(i)
 	if database_list.size() > 0 :
@@ -531,3 +518,21 @@ func adjust_ui_collection(upgrade):
 					collected_weapons.add_child(new_item)
 				"passive":
 					collected_passives.add_child(new_item)
+
+
+func _on_replay_button_click_end():
+	dead = false
+	get_tree().paused = false
+	get_tree().change_scene_to_file(level)
+
+func _on_menu_button_click_end():
+	dead = false
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://ui/menu.tscn")
+
+func _on_exit_button_click_end():
+	get_tree().quit()
+
+func _on_pause_button_pressed():
+	get_tree().paused = true
+	pause_screen.visible = true
