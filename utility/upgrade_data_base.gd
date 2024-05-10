@@ -143,7 +143,7 @@ const UPGRADES = {
 	"shooting_star_2": {
 		"icon": ICON_PATH + "shooting_star_icon.png",
 		"displayname": "Shooting Star",
-		"details": "Base Damage up by 0.5\nBase Speed up by 50%",
+		"details": "Base Damage up by 0.6\nBase Speed up by 50%",
 		"level": "Level: 2",
 		"prerequesits": ["shooting_star_1"],
 		"type": "weapon"
@@ -265,7 +265,7 @@ const UPGRADES = {
 	"ring_1": {
 		"icon": ICON_PATH + "ring_icon.png",
 		"displayname": "Ring",
-		"details": "Weapons fire 1 more projectiles",
+		"details": "ALL Weapons fire 1 more projectiles",
 		"level": "Level: 1",
 		"prerequesits": [],
 		"type": "passive"
@@ -273,7 +273,7 @@ const UPGRADES = {
 	"ring_2": {
 		"icon": ICON_PATH + "ring_icon.png",
 		"displayname": "Ring",
-		"details": "Weapons fire 1 more projectiles",
+		"details": "ALL Weapons fire 1 more projectiles",
 		"level": "Level: 2",
 		"prerequesits": ["ring_1"],
 		"type": "passive"

@@ -23,7 +23,7 @@ func _ready():
 		1:
 			bounce_num = 5
 			speed = 200
-			damage = 1
+			damage = 0.9
 		2:
 			bounce_num = 5
 			speed = 300

@@ -62,7 +62,7 @@ var fireball_level = 0
 
 #ShootingStar
 var shooting_star_ammo = 0
-var shooting_star_baseammo = 1
+var shooting_star_baseammo = 0
 var shooting_star_level = 0
 
 #BlackHole
@@ -71,7 +71,7 @@ var black_hole_attack = null
 
 #LightningBolt
 var lightning_bolt_ammo = 0
-var lightning_bolt_baseammo = 1
+var lightning_bolt_baseammo = 0
 var lightning_bolt_level = 0
 
 #Passives
@@ -93,8 +93,13 @@ var collected_upgrades = []
 var upgrade_options_available = []
 var additional_attacks = 0
 
+#bex tego nie dziala xD
+var firt_upgrade = false
+
 func _ready():
-	#upgrade_character("fireball_1")
+	upgrade_character("fireball_1")
+	firt_upgrade = true
+	
 	attack()
 	set_experience_bar(experience, callculate_experience_cap())
 	health_bar.init_health(health)
@@ -383,6 +388,7 @@ func upgrade_character(upgrade):
 			
 		"shooting_star_1":
 			shooting_star_level = 1
+			shooting_star_baseammo += 1
 		"shooting_star_2":
 			shooting_star_level = 2	
 		"shooting_star_3":
@@ -402,6 +408,7 @@ func upgrade_character(upgrade):
 			
 		"lightning_bolt_1":
 			lightning_bolt_level = 1
+			lightning_bolt_baseammo += 1
 		"lightning_bolt_2":
 			lightning_bolt_level = 2
 			lightning_bolt_baseammo += 1
@@ -460,23 +467,25 @@ func upgrade_character(upgrade):
 		"food":
 			health += 10
 			health = clamp(health, 0, max_health)
-	
+
 	adjust_ui_collection(upgrade)
-	attack()
-	var option_children = upgrade_options.get_children()
-	for i in option_children:
-		i.queue_free()
-	upgrade_options_available.clear()
 	collected_upgrades.append(upgrade)
 	
-	var tween = level_up_panel.create_tween()
-	tween.tween_property(level_up_panel, "position", Vector2(220, 380), 0.1).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
-	tween.play()
-	await tween.finished
-	
-	level_up_panel.visible = false
-	get_tree().paused = false
-	callculate_experience(0)
+	if firt_upgrade:
+		attack()
+		var option_children = upgrade_options.get_children()
+		for i in option_children:
+			i.queue_free()
+		upgrade_options_available.clear()
+		
+		var tween = level_up_panel.create_tween()
+		tween.tween_property(level_up_panel, "position", Vector2(220, 380), 0.1).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+		tween.play()
+		await tween.finished
+		
+		level_up_panel.visible = false
+		get_tree().paused = false
+		callculate_experience(0)
 
 func get_random_item():
 	var database_list = []
@@ -496,7 +505,8 @@ func get_random_item():
 				database_list.append(i)
 		else :
 			database_list.append(i)
-	if database_list.size() > 0 :
+			
+	if database_list.size() > 0:
 		var random_item = database_list.pick_random()
 		upgrade_options_available.append(random_item)
 		return random_item
