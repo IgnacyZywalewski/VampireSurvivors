@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://t8hthtgptarj"]
+
+[ext_resource type="AudioStream" uid="uid://ly8rl1qsfurm" path="res://assets/audio/fireball_sound.mp3" id="1_u7qi8"]
+
+[node name="snd_fireball" type="AudioStreamPlayer"]
+stream = ExtResource("1_u7qi8")
+volume_db = -30.0
+autoplay = true

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjnyddx7nqarx"]
+
+[ext_resource type="AudioStream" uid="uid://kr0o0xmpwp6v" path="res://assets/audio/thunder-25689-[AudioTrimmer.com].mp3" id="1_kqref"]
+
+[node name="snd_lightning_bolt" type="AudioStreamPlayer"]
+stream = ExtResource("1_kqref")
+volume_db = -30.0
+pitch_scale = 0.8
+autoplay = true

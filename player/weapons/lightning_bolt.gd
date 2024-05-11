@@ -13,6 +13,7 @@ var target = Vector2.ZERO
 
 func _ready():	
 	animation.play("lightning_bolt")
+	player.play_lightning_bolt_sound()
 	match level:
 		1:
 			damage = 2

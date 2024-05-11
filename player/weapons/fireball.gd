@@ -13,11 +13,13 @@ var angle = Vector2.ZERO
 
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var animation = $FireballAnimation
+@onready var sound = $snd_fireball
 
 signal remove_from_array(object)
 
 func _ready():
 	animation.play("fireball")
+	player.play_fireball_sound()
 	angle = global_position.direction_to(target)
 	rotation = angle.angle()
 	match level:

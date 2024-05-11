@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://yyajlyxgogeg"]
+[gd_scene load_steps=8 format=3 uid="uid://yyajlyxgogeg"]
 
 [ext_resource type="Script" path="res://player/weapons/fireball.gd" id="1_4ni2h"]
 [ext_resource type="Texture2D" uid="uid://d2wobmx54we0l" path="res://assets/textures/weapons/fireball.png" id="2_rwr3u"]
+[ext_resource type="AudioStream" uid="uid://ly8rl1qsfurm" path="res://assets/audio/fireball_sound.mp3" id="3_qow23"]
 
 [sub_resource type="Animation" id="Animation_7eoip"]
 length = 0.001
@@ -73,5 +74,10 @@ shape = SubResource("RectangleShape2D_wurn5")
 wait_time = 10.0
 one_shot = true
 autostart = true
+
+[node name="snd_fireball" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_qow23")
+volume_db = -25.0
+pitch_scale = 2.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

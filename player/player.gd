@@ -96,6 +96,7 @@ var additional_attacks = 0
 
 func _ready():
 	upgrade_charackter("fireball_1")
+	upgrade_charackter("lightning_bolt_1")
 	attack()
 	set_experience_bar(experience, callculate_experience_cap())
 	health_bar.init_health(health)
@@ -274,6 +275,7 @@ func _on_enemy_detection_area_body_exited(body):
 		enemy_close.erase(body)
 
 
+#Exp
 func _on_grab_area_area_entered(area):
 	if area.is_in_group("loot"):
 		area.target = self
@@ -314,6 +316,7 @@ func set_experience_bar(set_value = 1, set_max_value = 100):
 	experience_bar.max_value = set_max_value
 
 
+#Level Up
 func get_random_item():
 	var database_list = []
 	for i in UpgradeDataBase.UPGRADES:
@@ -518,7 +521,7 @@ func upgrade_process(upgrade):
 	upgrade_charackter(upgrade)
 	level_up_panel_hide()
 
-
+#Time
 func change_time(argtime = 0):
 	time = argtime
 	var get_s = time % 60
@@ -530,6 +533,7 @@ func change_time(argtime = 0):
 	time_label.text = str(get_m, ":", get_s)
 
 
+#Buttons
 func _on_replay_button_click_end():
 	dead = false
 	get_tree().paused = false
@@ -546,3 +550,15 @@ func _on_exit_button_click_end():
 func _on_pause_button_pressed():
 	get_tree().paused = true
 	pause_screen.visible = true
+
+
+#Sounds
+func play_fireball_sound():
+	var fireball_sound = preload("res://assets/audio/fireball_sound.tscn").instantiate()
+	add_child(fireball_sound)
+	fireball_sound.play()
+
+func play_lightning_bolt_sound():
+	var lightning_bolt_sound = preload("res://assets/audio/lightning_bolt_sound.tscn").instantiate()
+	add_child(lightning_bolt_sound)
+	lightning_bolt_sound.play()
