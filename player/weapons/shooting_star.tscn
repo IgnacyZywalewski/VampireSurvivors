@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2drtwbxw6bkl"]
+[gd_scene load_steps=8 format=3 uid="uid://d2drtwbxw6bkl"]
 
 [ext_resource type="Script" path="res://player/weapons/shooting_star.gd" id="1_42g65"]
 [ext_resource type="Texture2D" uid="uid://bpkmww0r3mw1w" path="res://assets/textures/weapons/shooting_star.png" id="1_g3u57"]
+[ext_resource type="AudioStream" uid="uid://dl2g0dwiiiu6q" path="res://assets/audio/shooting_star_sound.mp3" id="3_rdicb"]
 
 [sub_resource type="Animation" id="Animation_ly01y"]
 length = 0.001
@@ -68,3 +69,8 @@ visible = false
 position = Vector2(0, -2)
 scale = Vector2(0.799877, 0.84494)
 shape = SubResource("RectangleShape2D_f1372")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_rdicb")
+volume_db = -20.0
+autoplay = true

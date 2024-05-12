@@ -96,7 +96,6 @@ var additional_attacks = 0
 
 func _ready():
 	upgrade_charackter("fireball_1")
-	upgrade_charackter("lightning_bolt_1")
 	attack()
 	set_experience_bar(experience, callculate_experience_cap())
 	health_bar.init_health(health)
