@@ -1,11 +1,14 @@
 extends Node2D
 
-@export var spawns: Array[spawn_info] = []
 @onready var player = get_tree().get_first_node_in_group("player")
 
 var time = 0
-
 signal changetime(time)
+
+var bat = preload("res://enemy/enemy_bat.tscn")
+var hound = preload("res://enemy/enemy_hound.tscn")
+var mummy = preload("res://enemy/enemy_mummy.tscn")
+var revenant = preload("res://enemy/enemy_revenant.tscn")
 
 func _ready():
 	connect("changetime", Callable(player, "change_time"))
@@ -56,3 +59,6 @@ func get_random_position():
 	var y_spawn = randf_range(spawn_pos1.y, spawn_pos2.y)
 	
 	return Vector2(x_spawn, y_spawn)
+
+
+@export var spawns: Array[spawn_info] = []

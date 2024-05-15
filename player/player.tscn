@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bmxo6hqjvdv1n"]
+[gd_scene load_steps=33 format=3 uid="uid://bmxo6hqjvdv1n"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_vc33i"]
 [ext_resource type="PackedScene" uid="uid://bynupway77h0v" path="res://ui/shadow.tscn" id="2_iy0i6"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cuvyq7snegdrn" path="res://ui/panel.tscn" id="8_3xrhe"]
 [ext_resource type="PackedScene" uid="uid://b64b3cgyw4prq" path="res://ui/button.tscn" id="8_tikf5"]
 [ext_resource type="PackedScene" uid="uid://bog7qy43ogqpo" path="res://ui/pause_screen.tscn" id="11_6xadf"]
+[ext_resource type="AudioStream" uid="uid://n5yjuqwtokcf" path="res://assets/audio/level_up_sound.mp3" id="11_yrf3x"]
 [ext_resource type="Texture2D" uid="uid://is565rnymiik" path="res://assets/textures/items/pause_button.png" id="12_veeya"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_khjtk"]
@@ -472,6 +473,13 @@ offset_top = 60.0
 offset_right = 190.0
 offset_bottom = 100.0
 theme_override_constants/separation = 10
+
+[node name="level_up_sound" type="AudioStreamPlayer" parent="GUILayer/GUI/LevelUpPanel"]
+unique_name_in_owner = true
+stream = ExtResource("11_yrf3x")
+volume_db = -20.0
+pitch_scale = 2.0
+autoplay = true
 
 [node name="PauseScreen" parent="GUILayer/GUI" instance=ExtResource("11_6xadf")]
 unique_name_in_owner = true
