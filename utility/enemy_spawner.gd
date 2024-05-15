@@ -61,4 +61,64 @@ func get_random_position():
 	return Vector2(x_spawn, y_spawn)
 
 
-@export var spawns: Array[spawn_info] = []
+var spawns = [
+	#1 minute
+	{	#Bat 0-20
+		time_start = 0,
+		time_end = 20,
+		enemy = bat,
+		enemy_num = 1,
+		enemy_spawn_delay = 0,
+		spawn_delay_counter = 0
+	},
+	{	#Bat 20-40
+		time_start = 20,
+		time_end = 40,
+		enemy = bat,
+		enemy_num = 2,
+		enemy_spawn_delay = 0,
+		spawn_delay_counter = 0
+	},
+	{	#Bat 40-60
+		time_start = 40,
+		time_end = 60,
+		enemy = bat,
+		enemy_num = 3,
+		enemy_spawn_delay = 0,
+		spawn_delay_counter = 0
+	},
+	
+	#2 minute
+	{	#Hound 60-80
+		time_start = 60,
+		time_end = 80,
+		enemy = hound,
+		enemy_num = 1,
+		enemy_spawn_delay = 0,
+		spawn_delay_counter = 0
+	},
+	{	#Hound 80-100
+		time_start = 80,
+		time_end = 100,
+		enemy = hound,
+		enemy_num = 2,
+		enemy_spawn_delay = 0,
+		spawn_delay_counter = 0
+	},
+	{	#Hound 100-120
+		time_start = 100,
+		time_end = 120,
+		enemy = hound,
+		enemy_num = 3,
+		enemy_spawn_delay = 0,
+		spawn_delay_counter = 0
+	},
+	{	#Bat 100-120
+		time_start = 100,
+		time_end = 120,
+		enemy = bat,
+		enemy_num = 1,
+		enemy_spawn_delay = 0,
+		spawn_delay_counter = 0
+	}
+]
