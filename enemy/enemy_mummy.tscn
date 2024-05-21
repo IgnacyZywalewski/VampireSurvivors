@@ -105,10 +105,11 @@ collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_t5wnl")
 movement_speed = 20.0
-hp = 5.0
-knockback_recovery = 5.0
+hp = 12
+knockback_recovery = 15.0
 enemy_damage = 8.0
-enemy_hit_cooldown = 1.0
+enemy_hit_cooldown = 0.5
+enemy_difficulty = 1
 
 [node name="Sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_yfpd5")

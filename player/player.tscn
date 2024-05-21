@@ -258,15 +258,14 @@ root_node = NodePath("IdleSprite")
 libraries = {
 "": SubResource("AnimationLibrary_p25oc")
 }
-speed_scale = 0.8
 
 [node name="IdleSprite" type="Sprite2D" parent="Animation"]
+visible = false
 material = SubResource("ShaderMaterial_10no0")
 texture = ExtResource("2_oleco")
 hframes = 4
 
 [node name="WalkSprite" type="Sprite2D" parent="Animation"]
-visible = false
 material = SubResource("ShaderMaterial_kqe61")
 texture = ExtResource("3_8do3s")
 hframes = 6

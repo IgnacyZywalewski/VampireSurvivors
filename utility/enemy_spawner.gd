@@ -83,8 +83,8 @@ var spawns = [
 		time_start = 40,
 		time_end = 60,
 		enemy = bat,
-		enemy_num = 3,
-		enemy_spawn_delay = 0,
+		enemy_num = 5,
+		enemy_spawn_delay = 5,
 		spawn_delay_counter = 0
 	},
 	
@@ -93,32 +93,103 @@ var spawns = [
 		time_start = 60,
 		time_end = 80,
 		enemy = hound,
-		enemy_num = 1,
-		enemy_spawn_delay = 0,
+		enemy_num = 3,
+		enemy_spawn_delay = 2,
 		spawn_delay_counter = 0
 	},
 	{	#Hound 80-100
 		time_start = 80,
 		time_end = 100,
 		enemy = hound,
-		enemy_num = 2,
-		enemy_spawn_delay = 0,
+		enemy_num = 5,
+		enemy_spawn_delay = 4,
 		spawn_delay_counter = 0
 	},
-	{	#Hound 100-120
-		time_start = 100,
+	{	#Hound 105-120
+		time_start = 105,
 		time_end = 120,
 		enemy = hound,
-		enemy_num = 3,
-		enemy_spawn_delay = 0,
+		enemy_num = 8,
+		enemy_spawn_delay = 5,
 		spawn_delay_counter = 0
 	},
 	{	#Bat 100-120
-		time_start = 100,
+		time_start = 80,
 		time_end = 120,
 		enemy = bat,
 		enemy_num = 1,
 		enemy_spawn_delay = 0,
 		spawn_delay_counter = 0
-	}
+	},
+	
+	#3 minute
+	{	#mummy 120-160
+		time_start = 120,
+		time_end = 160,
+		enemy = mummy,
+		enemy_num = 3,
+		enemy_spawn_delay = 2,
+		spawn_delay_counter = 0
+	},
+	{	#bat 160-180
+		time_start = 160,
+		time_end = 180,
+		enemy = bat,
+		enemy_num = 2,
+		enemy_spawn_delay = 0,
+		spawn_delay_counter = 0
+	},
+	
+	#4 minute
+	{	#revenant 180-240
+		time_start = 180,
+		time_end = 240,
+		enemy = revenant,
+		enemy_num = 1,
+		enemy_spawn_delay = 10,
+		spawn_delay_counter = 0
+	},
+	{	#bat 180-240
+		time_start = 180,
+		time_end = 240,
+		enemy = bat,
+		enemy_num = 30,
+		enemy_spawn_delay = 1,
+		spawn_delay_counter = 0
+	},
+	
+	
+	#5 minute
+	{	#mummy 240-300
+		time_start = 240,
+		time_end = 300,
+		enemy = mummy,
+		enemy_num = 1,
+		enemy_spawn_delay = 1,
+		spawn_delay_counter = 0
+	},
+	{	#hound 240-300
+		time_start = 240,
+		time_end = 300,
+		enemy = hound,
+		enemy_num = 1,
+		enemy_spawn_delay = 1,
+		spawn_delay_counter = 0
+	},
+	{	#revenant 240-300
+		time_start = 240,
+		time_end = 300,
+		enemy = revenant,
+		enemy_num = 1,
+		enemy_spawn_delay = 1,
+		spawn_delay_counter = 0
+	},
+	{	#bat 240-300
+		time_start = 240,
+		time_end = 300,
+		enemy = bat,
+		enemy_num = 5,
+		enemy_spawn_delay = 0,
+		spawn_delay_counter = 0
+	},
 ]

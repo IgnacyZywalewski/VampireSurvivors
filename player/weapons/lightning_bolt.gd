@@ -41,5 +41,6 @@ func _physics_process(_delta):
 	elif sprite.frame == 3 and collision_shape.disabled == true:
 		collision_shape.disabled = false
 
-func _on_lightning_bolt_animation_animation_finished(_animation):
-	queue_free()
+func _on_lightning_bolt_animation_animation_finished(animation):
+	if animation == "lightning_bolt":
+		queue_free()

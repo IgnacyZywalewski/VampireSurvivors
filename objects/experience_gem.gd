@@ -21,11 +21,11 @@ func _ready():
 			experience = 1
 		1: #medium 
 			sprite.texture = sprite_red
-			experience = 3
+			experience = 6
 			sprite.scale = Vector2(0.1, 0.1)
 		2: #hard
 			sprite.texture = sprite_gold
-			experience = 5
+			experience = 15
 			sprite.scale = Vector2(0.1, 0.1)
 
 func _physics_process(delta):

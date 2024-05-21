@@ -5,7 +5,8 @@ var bounce_num = 5
 var speed = 300
 var damage = 2
 
-var hurt_box_type = "hit_once"
+var hurt_box_type = "cooldown"
+var cooldown_timer = 0.5
 var knockback_amount = 100
 
 var target = Vector2.ZERO

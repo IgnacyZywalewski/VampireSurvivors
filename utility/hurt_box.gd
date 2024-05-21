@@ -23,9 +23,6 @@ func _on_area_entered(area):
 								area.connect("remove_from_array", Callable(self, "remove_from_list"))
 					else:
 						return 
-				#"disable_hit_box": #DisableHitBox
-					#if area.has_method("tempdisable"):
-						#area.tempdisable()
 						
 			var damage = area.damage
 			
