@@ -478,7 +478,6 @@ unique_name_in_owner = true
 stream = ExtResource("11_yrf3x")
 volume_db = -20.0
 pitch_scale = 2.0
-autoplay = true
 
 [node name="PauseScreen" parent="GUILayer/GUI" instance=ExtResource("11_6xadf")]
 unique_name_in_owner = true

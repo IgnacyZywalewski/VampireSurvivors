@@ -361,6 +361,7 @@ func adjust_ui_collection(upgrade):
 func level_up():
 	level_label.text = str("Level: ", experience_level)
 	level_up_panel.visible = true
+	%level_up_sound.play()
 	
 	var tween = level_up_panel.create_tween()
 	tween.tween_property(level_up_panel, "position", Vector2(220, 65), 0.5).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
