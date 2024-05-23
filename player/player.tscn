@@ -398,7 +398,6 @@ vertical_alignment = 1
 [node name="DeathPanel" parent="GUILayer/GUI" instance=ExtResource("8_3xrhe")]
 unique_name_in_owner = true
 process_mode = 2
-visible = false
 layout_mode = 0
 offset_left = 220.0
 offset_top = -260.0

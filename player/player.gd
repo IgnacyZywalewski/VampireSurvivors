@@ -186,6 +186,11 @@ func _on_animation_animation_finished(anim_name):
 		get_tree().paused = true
 		death_panel.visible = true
 		
+		if time > 600:
+			result_label.text = "You won!"
+		else:
+			result_label.text = "You died"
+		
 		var tween = death_panel.create_tween()
 		tween.tween_property(death_panel, "position", Vector2(220, 65), 2.0).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 		tween.play()
@@ -303,7 +308,7 @@ func callculate_experience(gem_experience):
 func callculate_experience_cap():
 	var exp_cap = experience_level
 	if experience_level < 20:
-		exp_cap = experience_level * 5
+		exp_cap = experience_level * 6
 	elif experience_level < 40:
 		exp_cap = 95 + (experience_level - 19) * 8
 	else:

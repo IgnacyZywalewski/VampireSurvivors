@@ -9,6 +9,11 @@ var bat = preload("res://enemy/enemy_bat.tscn")
 var hound = preload("res://enemy/enemy_hound.tscn")
 var mummy = preload("res://enemy/enemy_mummy.tscn")
 var revenant = preload("res://enemy/enemy_revenant.tscn")
+var drake = preload("res://enemy/enemy_poison_drake.tscn")
+var skull = preload("res://enemy/enemy_warp_skull.tscn")
+var fire_elemental = preload("res://enemy/enemy_fire_elemental.tscn")
+var solar = preload("res://enemy/enemy_solar.tscn")
+var death = preload("res://enemy/enemy_death.tscn")
 
 func _ready():
 	connect("changetime", Callable(player, "change_time"))
@@ -84,7 +89,7 @@ var spawns = [
 		time_end = 60,
 		enemy = bat,
 		enemy_num = 5,
-		enemy_spawn_delay = 5,
+		enemy_spawn_delay = 2,
 		spawn_delay_counter = 0
 	},
 	
@@ -141,55 +146,155 @@ var spawns = [
 	},
 	
 	#4 minute
-	{	#revenant 180-240
-		time_start = 180,
-		time_end = 240,
-		enemy = revenant,
-		enemy_num = 1,
-		enemy_spawn_delay = 10,
-		spawn_delay_counter = 0
-	},
 	{	#bat 180-240
 		time_start = 180,
 		time_end = 240,
 		enemy = bat,
-		enemy_num = 30,
+		enemy_num = 20,
 		enemy_spawn_delay = 1,
 		spawn_delay_counter = 0
 	},
 	
 	
 	#5 minute
-	{	#mummy 240-300
+	{	#drake 240-300
 		time_start = 240,
-		time_end = 300,
-		enemy = mummy,
-		enemy_num = 1,
-		enemy_spawn_delay = 1,
+		time_end = 340,
+		enemy = drake,
+		enemy_num = 3,
+		enemy_spawn_delay = 2,
 		spawn_delay_counter = 0
 	},
-	{	#hound 240-300
-		time_start = 240,
-		time_end = 300,
-		enemy = hound,
-		enemy_num = 1,
-		enemy_spawn_delay = 1,
-		spawn_delay_counter = 0
-	},
-	{	#revenant 240-300
-		time_start = 240,
-		time_end = 300,
+	#6 minute
+	{	#revenant 300-360
+		time_start = 300,
+		time_end = 400,
 		enemy = revenant,
-		enemy_num = 1,
+		enemy_num = 3,
+		enemy_spawn_delay = 2,
+		spawn_delay_counter = 0
+	},
+	 #7 minute
+	{	#skull 300-360
+		time_start = 360,
+		time_end = 420,
+		enemy = skull,
+		enemy_num = 3,
+		enemy_spawn_delay = 2,
+		spawn_delay_counter = 0
+	},
+	
+	
+	{	#bat 320-400
+		time_start = 320,
+		time_end = 400,
+		enemy = bat,
+		enemy_num = 5,
 		enemy_spawn_delay = 1,
 		spawn_delay_counter = 0
 	},
-	{	#bat 240-300
-		time_start = 240,
-		time_end = 300,
+	
+	#8 minute
+	{	#fire_elemental 420-450
+		time_start = 420,
+		time_end = 450,
+		enemy = fire_elemental,
+		enemy_num = 1,
+		enemy_spawn_delay = 2,
+		spawn_delay_counter = 0
+	},
+	{	#fire_elemental 450-480
+		time_start = 450,
+		time_end = 480,
+		enemy = fire_elemental,
+		enemy_num = 1,
+		enemy_spawn_delay = 0,
+		spawn_delay_counter = 0
+	},
+	
+	#9 minute
+	{	#solar 420-480
+		time_start = 480,
+		time_end = 540,
+		enemy = solar,
+		enemy_num = 3,
+		enemy_spawn_delay = 5,
+		spawn_delay_counter = 0
+	},
+	
+	#10 minute
+	{	#solar 540-600
+		time_start = 540,
+		time_end = 600,
+		enemy = solar,
+		enemy_num = 3,
+		enemy_spawn_delay = 5,
+		spawn_delay_counter = 0
+	},
+	{	#fire_elemental 540-600
+		time_start = 540,
+		time_end = 600,
+		enemy = fire_elemental,
+		enemy_num = 3,
+		enemy_spawn_delay = 3,
+		spawn_delay_counter = 0
+	},
+	{	#drake 540-600
+		time_start = 540,
+		time_end = 600,
+		enemy = drake,
+		enemy_num = 2,
+		enemy_spawn_delay = 1,
+		spawn_delay_counter = 0
+	},
+	{	#skull 540-600
+		time_start = 540,
+		time_end = 600,
+		enemy = skull,
+		enemy_num = 3,
+		enemy_spawn_delay = 1,
+		spawn_delay_counter = 0
+	},
+	{	#revenant 540-600
+		time_start = 540,
+		time_end = 600,
+		enemy = revenant,
+		enemy_num = 5,
+		enemy_spawn_delay = 1,
+		spawn_delay_counter = 0
+	},
+	{	#mummy 540-600
+		time_start = 540,
+		time_end = 600,
+		enemy = mummy,
+		enemy_num = 5,
+		enemy_spawn_delay = 1,
+		spawn_delay_counter = 0
+	},
+	{	#hound 540-600
+		time_start = 540,
+		time_end = 600,
+		enemy = hound,
+		enemy_num = 5,
+		enemy_spawn_delay = 1,
+		spawn_delay_counter = 0
+	},
+	{	#bat 540-600
+		time_start = 540,
+		time_end = 600,
 		enemy = bat,
 		enemy_num = 5,
 		enemy_spawn_delay = 0,
 		spawn_delay_counter = 0
 	},
+	
+	#10 minute
+	{	#death
+		time_start = 600,
+		time_end = 601,
+		enemy = death,
+		enemy_num = 1,
+		enemy_spawn_delay = 0,
+		spawn_delay_counter = 0
+	}
 ]
