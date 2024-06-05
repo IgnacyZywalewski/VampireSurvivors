@@ -161,7 +161,7 @@ var spawns = [
 		time_start = 240,
 		time_end = 340,
 		enemy = drake,
-		enemy_num = 3,
+		enemy_num = 2,
 		enemy_spawn_delay = 2,
 		spawn_delay_counter = 0
 	},
@@ -170,7 +170,7 @@ var spawns = [
 		time_start = 300,
 		time_end = 400,
 		enemy = revenant,
-		enemy_num = 3,
+		enemy_num = 2,
 		enemy_spawn_delay = 2,
 		spawn_delay_counter = 0
 	},
@@ -179,7 +179,7 @@ var spawns = [
 		time_start = 360,
 		time_end = 420,
 		enemy = skull,
-		enemy_num = 3,
+		enemy_num = 2,
 		enemy_spawn_delay = 2,
 		spawn_delay_counter = 0
 	},
@@ -199,7 +199,7 @@ var spawns = [
 		time_start = 420,
 		time_end = 450,
 		enemy = fire_elemental,
-		enemy_num = 1,
+		enemy_num = 2,
 		enemy_spawn_delay = 2,
 		spawn_delay_counter = 0
 	},
@@ -208,7 +208,7 @@ var spawns = [
 		time_end = 480,
 		enemy = fire_elemental,
 		enemy_num = 1,
-		enemy_spawn_delay = 0,
+		enemy_spawn_delay = 1,
 		spawn_delay_counter = 0
 	},
 	
@@ -217,8 +217,8 @@ var spawns = [
 		time_start = 480,
 		time_end = 540,
 		enemy = solar,
-		enemy_num = 3,
-		enemy_spawn_delay = 5,
+		enemy_num = 1,
+		enemy_spawn_delay = 3,
 		spawn_delay_counter = 0
 	},
 	
@@ -227,7 +227,7 @@ var spawns = [
 		time_start = 540,
 		time_end = 600,
 		enemy = solar,
-		enemy_num = 3,
+		enemy_num = 1,
 		enemy_spawn_delay = 5,
 		spawn_delay_counter = 0
 	},
@@ -235,8 +235,8 @@ var spawns = [
 		time_start = 540,
 		time_end = 600,
 		enemy = fire_elemental,
-		enemy_num = 3,
-		enemy_spawn_delay = 3,
+		enemy_num = 1,
+		enemy_spawn_delay = 5,
 		spawn_delay_counter = 0
 	},
 	{	#drake 540-600
@@ -244,39 +244,39 @@ var spawns = [
 		time_end = 600,
 		enemy = drake,
 		enemy_num = 2,
-		enemy_spawn_delay = 1,
+		enemy_spawn_delay = 4,
 		spawn_delay_counter = 0
 	},
 	{	#skull 540-600
 		time_start = 540,
 		time_end = 600,
 		enemy = skull,
-		enemy_num = 3,
-		enemy_spawn_delay = 1,
+		enemy_num = 2,
+		enemy_spawn_delay = 4,
 		spawn_delay_counter = 0
 	},
 	{	#revenant 540-600
 		time_start = 540,
 		time_end = 600,
 		enemy = revenant,
-		enemy_num = 5,
-		enemy_spawn_delay = 1,
+		enemy_num = 2,
+		enemy_spawn_delay = 4,
 		spawn_delay_counter = 0
 	},
 	{	#mummy 540-600
 		time_start = 540,
 		time_end = 600,
 		enemy = mummy,
-		enemy_num = 5,
-		enemy_spawn_delay = 1,
+		enemy_num = 2,
+		enemy_spawn_delay = 4,
 		spawn_delay_counter = 0
 	},
 	{	#hound 540-600
 		time_start = 540,
 		time_end = 600,
 		enemy = hound,
-		enemy_num = 5,
-		enemy_spawn_delay = 1,
+		enemy_num = 2,
+		enemy_spawn_delay = 4,
 		spawn_delay_counter = 0
 	},
 	{	#bat 540-600
@@ -284,14 +284,14 @@ var spawns = [
 		time_end = 600,
 		enemy = bat,
 		enemy_num = 5,
-		enemy_spawn_delay = 0,
+		enemy_spawn_delay = 2,
 		spawn_delay_counter = 0
 	},
 	
 	#10 minute
 	{	#death
 		time_start = 600,
-		time_end = 601,
+		time_end = 600,
 		enemy = death,
 		enemy_num = 1,
 		enemy_spawn_delay = 0,

@@ -258,6 +258,7 @@ root_node = NodePath("IdleSprite")
 libraries = {
 "": SubResource("AnimationLibrary_p25oc")
 }
+speed_scale = 0.8
 
 [node name="IdleSprite" type="Sprite2D" parent="Animation"]
 visible = false
@@ -309,11 +310,11 @@ wait_time = 0.2
 
 [node name="ShootingStarTimer" type="Timer" parent="Attack"]
 unique_name_in_owner = true
-wait_time = 5.0
+wait_time = 8.0
 
 [node name="ShootingStarAttackTimer" type="Timer" parent="Attack/ShootingStarTimer"]
 unique_name_in_owner = true
-wait_time = 0.3
+wait_time = 0.8
 
 [node name="LightningBoltTimer" type="Timer" parent="Attack"]
 unique_name_in_owner = true

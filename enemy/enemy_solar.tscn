@@ -14,7 +14,7 @@ shader_parameter/enabled = false
 shader_parameter/color = Color(1, 1, 1, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4gk7s"]
-radius = 18.0278
+radius = 20.025
 
 [sub_resource type="Animation" id="Animation_hhrgw"]
 length = 0.001
@@ -93,10 +93,10 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_20fr8"]
-size = Vector2(25, 45)
+size = Vector2(35.5, 36.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wqn8"]
-size = Vector2(37, 47)
+size = Vector2(43, 50.5)
 
 [node name="EnemySolar" type="CharacterBody2D" groups=["enemy"]]
 z_index = 1
@@ -113,21 +113,22 @@ enemy_difficulty = 2
 
 [node name="Sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_yfpd5")
-position = Vector2(0, -1.86265e-09)
-scale = Vector2(1.75195, 1.87207)
+position = Vector2(-9.53674e-07, 0)
+scale = Vector2(1.46973, 1.57049)
 texture = ExtResource("3_0txqp")
 hframes = 8
 
 [node name="Shadow" parent="." instance=ExtResource("4_8c6if")]
 z_index = -1
-offset_left = 14.0
-offset_top = 30.0
-offset_right = 17.0
-offset_bottom = 60.0
+offset_left = 15.0
+offset_top = 26.0
+offset_right = 19.0
+offset_bottom = 57.0
 rotation = 1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
+position = Vector2(-1, 1)
 shape = SubResource("CircleShape2D_4gk7s")
 
 [node name="Animation" type="AnimationPlayer" parent="."]
@@ -144,13 +145,12 @@ libraries = {
 }
 
 [node name="Hitbox" parent="." instance=ExtResource("5_t0hcg")]
-visible = false
 position = Vector2(0, 1)
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2(0.5, -5.5)
+position = Vector2(-1, -2)
 shape = SubResource("RectangleShape2D_20fr8")
 
 [node name="Hurtbox" parent="." instance=ExtResource("6_g5wh8")]
@@ -159,7 +159,7 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
-position = Vector2(-0.5, -4.5)
+position = Vector2(-2.5, 0.25)
 shape = SubResource("RectangleShape2D_6wqn8")
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]

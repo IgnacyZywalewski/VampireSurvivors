@@ -4,6 +4,7 @@ var movement_speed = 80.0
 @export var basic_movement_speed = 80
 @export var health = 100
 @export var max_health = 100
+
 var dead = false
 
 var experience = 0
@@ -168,7 +169,6 @@ func movement():
 func _on_hurtbox_hurt(damage, _angle, _knockback):
 	health -= clamp(damage - shield_amount, 1.0, 999.0)
 	health_bar.health = health
-	print(health)
 	hit_flash_animation.play("hit_flash")
 	if health <= 0:
 		dead = true
@@ -308,11 +308,11 @@ func callculate_experience(gem_experience):
 func callculate_experience_cap():
 	var exp_cap = experience_level
 	if experience_level < 20:
-		exp_cap = experience_level * 6
+		exp_cap = experience_level * 5
 	elif experience_level < 40:
-		exp_cap = 95 + (experience_level - 19) * 8
+		exp_cap = 95 + (experience_level - 19) * 6
 	else:
-		exp_cap = 255 + (experience_level-39) * 12
+		exp_cap = 255 + (experience_level-39) * 9
 	return exp_cap
 
 func set_experience_bar(set_value = 1, set_max_value = 100):
@@ -562,8 +562,12 @@ func play_fireball_sound():
 	var fireball_sound = preload("res://assets/audio/fireball_sound.tscn").instantiate()
 	add_child(fireball_sound)
 	fireball_sound.play()
+	await fireball_sound.finished
+	fireball_sound.queue_free()
 
 func play_lightning_bolt_sound():
 	var lightning_bolt_sound = preload("res://assets/audio/lightning_bolt_sound.tscn").instantiate()
 	add_child(lightning_bolt_sound)
 	lightning_bolt_sound.play()
+	await  lightning_bolt_sound.finished
+	lightning_bolt_sound.queue_free()

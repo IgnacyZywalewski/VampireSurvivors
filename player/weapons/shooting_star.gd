@@ -14,10 +14,8 @@ var angle = Vector2.ZERO
 
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var sprite = $ShootingStarSprite
-@onready var shooting_star_animation = $ShootingStarAnimation
 
 func _ready():
-	shooting_star_animation.play("shooting_star")
 	angle = global_position.direction_to(target)
 	rotation = angle.angle() + deg_to_rad(-90)
 	match level:
